@@ -1,7 +1,7 @@
 import emailService from '../services/emailService.js';
 import EmailList from '../cmps/EmailList.jsx';
 import EmailCompose from '../cmps/EmailCompose.jsx';
-import {eventBus} from '../../../services/eventBusService.js';
+import { eventBus } from '../../../services/eventBusService.js';
 
 
 export default class EmailApp extends React.Component {
@@ -16,6 +16,10 @@ export default class EmailApp extends React.Component {
         this.loadEmails();
         eventBus.on('read-toggle', (id) => {
             emailService.readToggle(id)
+                .then(this.loadEmails());
+        })
+        eventBus.on('star-toggle', (id) => {
+            emailService.starToggle(id)
                 .then(this.loadEmails());
         })
     }
@@ -41,7 +45,23 @@ export default class EmailApp extends React.Component {
         this.setState({ composeMail: true })
     }
 
-    on
+    onSentMail = (mail, event) => {
+        event.preventDefault();
+        emailService.sentMail(mail)
+            .then(this.loadEmails());
+    }
+
+    onDraftMail = (mail) => {
+        console.log(mail)
+        emailService.draftMail(mail)
+            .then(this.loadEmails());
+    }
+
+
+    closeMailCompose = () => {
+        this.setState({ composeMail: false })
+    }
+
 
     render() {
         const { emails, composeMail } = this.state;
@@ -56,7 +76,7 @@ export default class EmailApp extends React.Component {
                     <li onClick={() => this.changeLabel('drafts')}>Drafts</li>
                 </div>
                 {!emails ? <h2>Loading...</h2> : <EmailList emails={emails} />}
-                {composeMail && <EmailCompose />}
+                {composeMail && <EmailCompose closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} />}
             </div>
         )
     }
