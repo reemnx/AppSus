@@ -1,4 +1,5 @@
 import NoteServices from '../services/NotesServices.js'
+import { eventBus } from '../../../services/eventBusService.js'
 export default class NoteTxt extends React.Component {
 
     state = {
@@ -18,7 +19,11 @@ export default class NoteTxt extends React.Component {
         let noteTitle = ev.target.getAttribute('title')
         let noteContent = ev.target.getAttribute('note')
         NoteServices.pushTxtNotes(noteTitle,noteContent)
-         .then() //usrMsg + render
+         .then(res => {
+            eventBus.emit('show-msg', `Note ${noteTitle} added!`)
+            console.log(res);
+            
+         }) 
         
     }
 

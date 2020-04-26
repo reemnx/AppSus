@@ -1,4 +1,4 @@
-// import { eventBus } from '../services/eventBusService.js'
+import { eventBus } from '../../../services/eventBusService.js'
 
 
 export default class UserMsg extends React.Component {
@@ -6,9 +6,9 @@ export default class UserMsg extends React.Component {
 
     componentDidMount() {
         this.unsubscribeFromEventBus = eventBus.on('show-msg', (data) => {
-            this.setState({ msg: data.msg })
+            this.setState({ msg: data })
             setTimeout(() => {
-                this.setState({ msg: null )
+                this.setState({ msg: null })
             }, 3000)
         })
     }

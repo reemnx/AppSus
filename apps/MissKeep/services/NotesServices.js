@@ -4,6 +4,10 @@ export default{
 
 let gNotes = []
 
+function getNotes(){
+    return gNotes
+}
+
 function pushTxtNotes(title,content){
     let txtNote = {
         title,
