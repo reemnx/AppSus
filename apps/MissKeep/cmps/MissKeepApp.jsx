@@ -31,7 +31,8 @@ export default class MissKeepApp extends React.Component {
     }
 
     onNewNotePush = () =>{
-        this.setState({notesList: NotesServices.getNotes()}) 
+        let notes = NotesServices.getNotes()
+        this.setState({notesList: notes , isNoteActive: false}) 
     }
 
     render() {
@@ -55,7 +56,7 @@ export default class MissKeepApp extends React.Component {
                         </div>
                     </div>}
 
-                    {isNoteActive && (type === 'NoteText') && <NoteTxt notepushed = {this.onNewNotePush}
+                    {isNoteActive && (type === 'NoteText') && <NoteTxt notepushed={this.onNewNotePush}
                      closemodal={this.onCloseNoteCreation} />}
 
                     {notesList && <NotesList notes={notesList}></NotesList>}

@@ -1,0 +1,21 @@
+.e-header {
+    height: 60px;
+    border-bottom: 1px solid #dfe4ea;
+    color: #57606f;
+}
+.e-nav-container, .e-main-container {
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.e-labels-container{
+    width: 250px;
+    height: 100%;
+}
+
+.e-labels-container *{
+    margin: 20px; 
+    cursor: pointer;
+}
+

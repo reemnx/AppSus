@@ -1,10 +1,12 @@
 export default{
-    pushTxtNotes
+    pushTxtNotes,
+    getNotes
 }
 
 let gNotes = []
 
 function getNotes(){
+    console.log('Note pushed');
     return gNotes
 }
 

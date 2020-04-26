@@ -21,10 +21,8 @@ export default class NoteTxt extends React.Component {
         NoteServices.pushTxtNotes(noteTitle,noteContent)
          .then(res => {
             eventBus.emit('show-msg', `Note ${noteTitle} added!`)
-            console.log(res);
-            
+            // this.props.notepushed()
          }) 
-        
     }
 
     closeNoteCreation = () => {
