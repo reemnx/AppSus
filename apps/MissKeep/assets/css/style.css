@@ -1,4 +1,4 @@
-h4{
+h4 {
     margin: 0px;
     padding: 0px;
 }
@@ -75,9 +75,10 @@ h4{
 .MK-content-container {
     box-sizing: border-box;
     margin: 0px;
-    padding: 40px 0px 0px 0px;
+    padding: 40px 0px 30px 0px;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     background-color: #202124;
 }
 
@@ -190,4 +191,138 @@ h4{
 .MK-txt-modal-btns button:nth-of-type(2):hover {
     cursor: pointer;
     background-color: rgb(16, 91, 252);
+}
+
+.MK-notes-wraper {
+    padding-top: 40px;
+    flex-wrap: wrap;
+    height: fit-content;
+}
+
+.MK-txt-note {
+    width: 250px;
+    text-align: center;
+    border: 2px solid rgb(187, 187, 187);
+    border-radius: 10px;
+    box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 5px 10px;
+    margin-right: 55px;
+}
+
+.MK-txt-note h2 {
+    color: rgb(180, 180, 180);
+    font-family: cursive;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.MK-txt-note p {
+    outline: none;
+    line-height: 1.6;
+    color: rgb(230, 228, 228);
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 0.8px;
+}
+
+.MK-txt-note button {
+    background-color: rgb(16, 91, 252);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    width: 100%;
+}
+
+.MK-txt-note button:hover {
+    cursor: pointer;
+    background-color: rgb(57, 120, 255);
+}
+
+.MK-text {
+    content: url(../css/img/text.svg);
+    width: 40px;
+    height: 40px;
+}
+
+.MK-img {
+    content: url(../css/img/photo.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.MK-list {
+    content: url(../css/img/list.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.MK-list:hover {
+    cursor: pointer;
+}
+
+.MK-img:hover {
+    cursor: pointer;
+}
+
+.MK-text:hover {
+    cursor: pointer;
+}
+
+/* IMG NOTE ----------------------------------------------- */
+
+.MK-img-note-modal {
+    width: 400px;
+    padding: 10px 15px;
+    border: 2px solid #525355;
+    border-radius: 10px;
+}
+.MK-img-note-modal input {
+    width: 100%;
+    height: 20%;
+    margin-bottom: 15px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: rgb(224, 224, 224);
+    font-size: 1rem;
+    font-weight: 550;
+    letter-spacing: 1px;
+    border-bottom: 1px rgba(255, 255, 255, 0.205) solid;
+}
+
+.MK-img-note {
+    text-align: center;
+    border: 2px solid rgb(187, 187, 187);
+    border-radius: 10px;
+    box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
+    padding: 5px 10px;
+    margin-right: 55px;
+    margin-top: 20px;    
+}
+
+.MK-img-note h2 {
+    color: rgb(180, 180, 180);
+    font-family: cursive;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.MK-img-note button {
+    background-color: rgb(252, 102, 16);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    width: 100%;
+}
+
+.MK-img-note-image {
+    width: 250px;
+    margin-bottom: 10px;
+}
+.MK-img-note button:hover{
+    cursor: pointer;
+    background-color: rgb(253, 123, 48);
 }

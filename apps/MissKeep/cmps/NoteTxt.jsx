@@ -20,8 +20,8 @@ export default class NoteTxt extends React.Component {
         let noteContent = ev.target.getAttribute('note')
         NoteServices.pushTxtNotes(noteTitle,noteContent)
          .then(res => {
-            eventBus.emit('show-msg', `Note ${noteTitle} added!`)
-            // this.props.notepushed()
+            eventBus.emit('show-msg', `Note "${noteTitle}" added!`)
+            this.props.notePushed()
          }) 
     }
 
@@ -38,7 +38,7 @@ export default class NoteTxt extends React.Component {
                     onSubmit={this.onNoteSubmited} title={title} note={content}>
                     <input type="text" name="title" placeholder="Title" onChange={this.onTitleChange}/>
                     <blockquote contentEditable="true" onKeyUp={this.onNoteChange}>
-                        Take a note...
+                    Take a note...
                     </blockquote>
                     <div className="MK-txt-modal-btns flex space-between">
                         <button onClick={this.closeNoteCreation}>Close</button>
