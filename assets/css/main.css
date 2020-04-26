@@ -1,7 +1,9 @@
-@import url('../../apps/MissKeep/assets/css/style.css') ;
+@import url(../../apps/MissKeep/assets/css/style.css) ;
+@import url(../../apps/MisterEmail/assets/css/misterEmail.css) ;
 
 *{
     box-sizing: border-box;
+    outline: none;
 }
 body{
     padding: 0px;
@@ -9,6 +11,16 @@ body{
     width: 100vw;
     height: 100vh;
 }
+
+h2,h3,h4,h5 {
+    margin: 0;
+    padding: 0;
+}
+
+button{
+cursor: pointer;
+}
+
 .header-container{
     height: 70px;
     box-shadow: 0px 0.3px 3px 0px rgba(0,0,0,0.75);

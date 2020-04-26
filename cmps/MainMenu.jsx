@@ -20,7 +20,7 @@ export default class MainMenu extends React.Component {
                 {isMenuShown && <div className="apps-container">
                     <NavLink exact to="/misskeep">K</NavLink>
                     <NavLink exact to="/">B</NavLink>
-                    <NavLink exact to="/">E</NavLink>
+                    <NavLink exact to="/misteremail">E</NavLink>
                 </div>}
             </div>
         )

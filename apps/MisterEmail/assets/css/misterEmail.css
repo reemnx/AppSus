@@ -19,3 +19,63 @@
     cursor: pointer;
 }
 
+.e-email-list-table{
+    width: 100%;
+    height: 100%;
+}
+
+.e-email-list-container{
+    width: 100%;
+}
+
+.e-email-list-container tr{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #dfe4ea;
+    cursor: pointer;
+    color: #2f3542;
+    height: 50px;
+}
+
+.e-email-list-container tr:hover{
+    box-shadow: 0px 0px 2px #57606f;
+}
+
+.e-email-buttons{
+    flex: 0.5;
+}
+.e-email-subject{
+    flex: 1;
+}
+
+.e-email-body{
+    flex: 3;
+    overflow: hidden;
+}
+
+.e-email-date{
+    flex: 1;
+    text-align: end;
+}
+
+.e-read{
+    font-weight: normal;
+    background-color: #f1f2f6;
+}
+
+.e-unread{
+    font-weight: bold;
+}
+
+.e-compose-mail{
+    position: absolute;
+    bottom: 0;
+    right: 5%;
+    width: 500px;
+}
+
+.e-compose-mail textarea{
+    height: 300px;
+}
+
