@@ -1,15 +1,56 @@
-import MainMenu from '../../../cmps/MainMenu.ksx'
+import MainMenu from '../../../cmps/MainMenu.jsx'
+import NoteTxt from './NoteTxt.jsx'
+
 export default class MissKeepApp extends React.Component {
 
     state = {
+        type: 'NoteText',
+        isNoteActive: false
 
+    }
+    onCloseNoteCreation = () => {
+        this.setState({ isNoteActive: false })
+    }
+
+    onTypeTxt = () => {
+        this.setState({ type: 'NoteText' })
+    }
+    onTypeImg = () => {
+        this.setState({ type: 'NoteImg' })
+    }
+    onTypeTodo = () => {
+        this.setState({ type: 'NoteTodos' })
+    }
+
+    onNoteInputFocus = () => {
+        this.setState({ isNoteActive: true })
     }
 
     render() {
+        const { isNoteActive, type } = this.state
         return (
-            <div>
-              {/* <MainMenu></MainMenu> */}
-            </div>
+            <React.Fragment>
+                <header className="MK-header flex justify-center align-center">
+                    <nav className="flex align-center space-between container">
+                        <h2>LOGO</h2>
+                        <input type="text" placeholder="Search note" />
+                        <MainMenu></MainMenu>
+                    </nav>
+                </header>
+                <main className="MK-content-container flex column align-center">
+                    {!isNoteActive && <div className="MK-create-note-wraper flex align-center">
+                        <input type="text" placeholder="Whats on your mind?" onFocus={this.onNoteInputFocus} />
+                        <div className="MK-notes-types-wraper flex align-center space-between">
+                            <span className="MK-txt" onClick={this.onTypeTxt}>Txt</span>
+                            <span onClick={this.onTypeImg}>Img</span>
+                            <span onClick={this.onTypeTodo}>Todo</span>
+                        </div>
+                    </div>}
+                    {isNoteActive && (type === 'NoteText') && <NoteTxt closemodal={this.onCloseNoteCreation} />}
+                </main>
+
+            </React.Fragment>
         )
     }
 }
+

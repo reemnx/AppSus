@@ -1,0 +1,168 @@
+/* Local helper */
+
+.MK-hidden {
+    display: none;
+}
+
+/* Header */
+
+.MK-header {
+    height: 60px;
+    background-color: #202124;
+    border-bottom: 1.5px solid #525355;
+}
+
+.MK-header nav {
+    height: 100%;
+}
+
+.MK-header h2 {
+    color: white;
+}
+
+.MK-header input {
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    background-color: #525355;
+    border-radius: 10px;
+    width: 400px;
+    height: 80%;
+    font-size: 1rem;
+    letter-spacing: 0.8px;
+}
+
+.MK-header input::placeholder {
+    color: rgb(206, 206, 206);
+    font-size: 1rem;
+    letter-spacing: 0.8px;
+}
+
+.MK-header input:focus {
+    background-color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 550;
+    color: #525355;
+}
+
+.MK-header input:focus::placeholder {
+    color: #525355;
+    font-weight: 530;
+}
+
+/* ------------------------------------------------ */
+
+/* Main */
+
+.MK-content-container {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 40px 0px 0px 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #202124;
+}
+
+.MK-create-note-wraper input {
+    background-color: transparent;
+    outline: none;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border: 2px solid #525355;
+    border-right-color: transparent;
+    padding-left: 10px;
+    width: 300px;
+    height: 50px;
+    margin-right: -5px;
+    font-size: 1.1rem;
+    letter-spacing: 1.1px;
+    color: white;
+}
+.MK-create-note-wraper{
+    box-shadow: 0px 1.2px 5px 0px rgba(0,0,0,0.75);
+    border-radius: 10px;
+}
+
+.MK-create-note-wraper input::placeholder {
+    font-size: 0.9rem;
+}
+
+.MK-notes-types-wraper {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #525355;
+    border-left-color: transparent;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    padding: 0px 5px;
+}
+
+.MK-txt {
+    color: white;
+    /* DELETE THIS AFTER DEBUG */
+}
+
+.MK-txt-note-modal {
+    width: 400px;
+    padding: 10px 15px;
+    border: 2px solid #525355;
+    border-radius: 10px;
+}
+
+.MK-txt-note-modal input:first-of-type {
+    width: 100%;
+    height: 20%;
+    margin-bottom: 15px;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    color: rgb(224, 224, 224);
+    font-size: 1rem;
+    font-weight: 550;
+    letter-spacing: 1px;
+    border-bottom: 1px rgba(255, 255, 255, 0.205) solid;
+}
+
+.MK-txt-note-modal blockquote {
+    width: 100%;
+    color: silver;
+    font-size: 1.2rem;
+    padding: 0px;
+    outline: none;
+}
+.MK-txt-note-modal blockquote p {
+    margin: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.226);
+}
+.MK-txt-modal-btns {
+    width: 100%;
+}
+.MK-txt-modal-btns button:first-of-type{
+    border: none;
+    outline: none;
+    background-color: rgb(160, 160, 160);
+    color: rgb(0, 0, 0) ;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px;
+}
+.MK-txt-modal-btns button:first-of-type:hover{
+    cursor: pointer;
+    background-color: rgb(185, 185, 185);
+}
+.MK-txt-modal-btns button:nth-of-type(2){
+    border: none;
+    outline: none;
+    background-color: rgb(0, 74, 233);
+    color: rgb(255, 255, 255) ;
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px;
+}
+.MK-txt-modal-btns button:nth-of-type(2):hover{
+    cursor: pointer;
+    background-color: rgb(16, 91, 252);
+}
