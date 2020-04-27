@@ -9,7 +9,7 @@ export default class UserMsg extends React.Component {
             this.setState({ msg: data })
             setTimeout(() => {
                 this.setState({ msg: null })
-            }, 3000)
+            }, 5000)
         })
     }
     componentWillUnmount() {

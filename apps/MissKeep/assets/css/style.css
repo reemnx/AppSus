@@ -64,9 +64,10 @@ h4 {
     left: 20px;
     color: rgb(255, 255, 255);
     background-color: #363636;
-    border: 1.3px solid white;
+    border: 1.3px solid rgb(255, 251, 0);
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
-    width: 300px;
+    width: fit-content;
+    max-width: 500px;
     font-family: cursive;
     font-size: 1.2rem;
     padding: 10px 20px;
@@ -83,6 +84,7 @@ h4 {
     min-height: 100vh;
     height: fit-content;
     background-color: #202124;
+    
 }
 
 .MK-create-note-wraper input {
@@ -105,6 +107,7 @@ h4 {
 .MK-create-note-wraper {
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
     border-radius: 10px;
+    margin-bottom: 40px;
 }
 
 .MK-create-note-wraper input::placeholder {
@@ -122,7 +125,7 @@ h4 {
     padding: 0px 5px;
 }
 
-.MK-note-header{
+.MK-note-header {
     width: 100%;
 }
 
@@ -196,19 +199,30 @@ h4 {
 }
 
 .MK-notes-wraper {
-    padding-top: 40px;
-    flex-wrap: wrap;
-    height: fit-content;
+    margin-top: 20px;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
+    
+    
 }
 
 .MK-txt-note {
-    width: 250px;
+    width: 300px;
     text-align: center;
     border: 2px solid rgb(187, 187, 187);
     border-radius: 10px;
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
     padding: 5px 10px;
-    margin-right: 55px;
+    margin-bottom: 15px;
+    height: fit-content;
+    
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .MK-txt-note h2 {
@@ -226,6 +240,8 @@ h4 {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.8px;
     margin: 0px 0px 15px 0px;
+    max-width: 230px;
+    word-wrap: break-word;
 }
 
 .MK-txt-note button {
@@ -247,40 +263,48 @@ h4 {
     content: url(../css/img/text.svg);
     width: 40px;
     height: 40px;
-    
 }
 
 .MK-img {
     content: url(../css/img/photo.svg);
     width: 30px;
     height: 30px;
-    
 }
 
 .MK-list {
     content: url(../css/img/list.svg);
     width: 30px;
-    height: 30px; 
+    height: 30px;
 }
+
 .MK-vid {
     content: url(../css/img/youtube.svg);
     width: 35px;
-    height: 35px; 
+    height: 35px;
 }
+
 .MK-pin {
     content: url(../css/img/pushpin.svg);
     width: 25px;
-    height: 25px; 
+    height: 25px;
 }
+
 .MK-active-pin {
     content: url(../css/img/activePin.svg);
     width: 25px;
-    height: 25px; 
+    height: 25px;
+}
+
+.MK-logo {
+    content: url(../css/img/keep.png);
+    width: 45px;
+    height: 45px;
 }
 
 .MK-list:hover {
     cursor: pointer;
 }
+
 .MK-active-pin:hover {
     cursor: pointer;
 }
@@ -292,9 +316,11 @@ h4 {
 .MK-text:hover {
     cursor: pointer;
 }
+
 .MK-vid:hover {
     cursor: pointer;
 }
+
 .MK-pin:hover {
     cursor: pointer;
 }
@@ -307,6 +333,7 @@ h4 {
     border: 2px solid #525355;
     border-radius: 10px;
 }
+
 .MK-img-note-modal input {
     width: 100%;
     height: 20%;
@@ -327,8 +354,11 @@ h4 {
     border-radius: 10px;
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
     padding: 10px 10px 5px 10px;
-    margin-right: 55px;
-    margin-bottom: 15px;   
+    width: 300px;
+    margin-bottom: 15px;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
 
 .MK-img-note h2 {
@@ -353,10 +383,12 @@ h4 {
     width: 250px;
     margin-bottom: 10px;
 }
-.MK-img-note button:hover{
+
+.MK-img-note button:hover {
     cursor: pointer;
     background-color: rgb(253, 123, 48);
 }
+
 .MK-img-note p {
     outline: none;
     line-height: 1.6;
@@ -364,19 +396,27 @@ h4 {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.8px;
     margin: 0px 0px 15px 0px;
+    max-width: 250px;
+    word-wrap: break-word;
 }
 
 /* -------------------------------------------------------- */
+
 /* Vid note */
+
 .MK-vid-note {
     text-align: center;
     border: 2px solid rgb(187, 187, 187);
     border-radius: 10px;
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
     padding: 10px 10px 5px 10px;
-    margin-right: 55px;
-    margin-top: 20px;    
+    width: 300px;
+    margin-bottom: 15px;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }
+
 .MK-vid-note h2 {
     color: rgb(180, 180, 180);
     font-family: cursive;
@@ -384,6 +424,7 @@ h4 {
     letter-spacing: 1px;
     margin: 10px 0px;
 }
+
 .MK-vid-note p {
     outline: none;
     line-height: 1.6;
@@ -391,7 +432,10 @@ h4 {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.8px;
     margin: 0px 0px 15px 0px;
+    max-width: 350px;
+    word-wrap: break-word;
 }
+
 .MK-vid-note button {
     background-color: rgb(82, 29, 29);
     color: rgb(255, 255, 255);
@@ -401,23 +445,78 @@ h4 {
     border: none;
     width: 100%;
 }
-.MK-vid-note button:hover{
+
+.MK-vid-note button:hover {
     cursor: pointer;
     background-color: rgb(255, 47, 47);
 }
 
+.MK-vid-note iframe {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
 /* Pinned notes ------------------------------------------------------- */
 
-.MK-pinned-notes{
-    border-bottom: 1px solid silver;
+.MK-pinned-notes {
+    border-bottom: 1px solid rgba(192, 192, 192, 0.233);
     padding: 20px 0px;
+    margin-bottom: 15px;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+    -webkit-column-gap: 20px;
+    -moz-column-gap: 20px;
+    column-gap: 20px;
 }
-.MK-pinned-notes button{
+
+.MK-pinned-notes button {
     background-color: rgb(109, 109, 109) !important;
     color: black;
 }
-.MK-pinned-notes button:hover{
+
+.MK-pinned-notes button:hover {
     background-color: rgb(201, 204, 0) !important;
-    
 }
 
+/* Todos notes------------------------------------------- */
+.list-items{
+    width: 100%;
+}
+.todo-note-item-wraper{
+    width: 100%;
+    border-bottom: 1px solid rgb(92, 92, 92);
+    padding-bottom: 7px;
+    margin-bottom: 10px;
+}
+.todo-note-item-wraper h3{
+    max-width: 80%;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.todo-note-item-wraper h4{
+    color: white;
+    font-family: cursive;
+    font-size: 0.6rem;
+}
+.MK-checkbox{
+    width: 85%;
+}
+.MK-line{
+    text-decoration-line: line-through;
+}
+.MK-todos-add-btn{
+    border: none;
+    outline: none;
+    background-color: rgb(0, 201, 140);
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    border-radius: 5px;
+    padding: 5px;
+    position: relative;
+    align-self: flex-start;
+    font-size: .7rem;
+    margin-bottom: 20px;
+}

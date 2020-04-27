@@ -14,7 +14,7 @@ export default class NoteImg extends React.Component {
         ev.preventDefault()
         let noteTitle = ev.target.getAttribute('title')
         let noteVidUrl = ev.target.getAttribute('vid')
-        NoteServices.pushImgNotes(noteTitle,noteVidUrl) 
+        NoteServices.pushVidNotes(noteTitle,noteVidUrl) 
          .then(res => {
             eventBus.emit('show-msg', `Note "${noteTitle}" added!`)
             this.props.notePushed()
