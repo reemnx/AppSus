@@ -1,4 +1,5 @@
-const { NavLink } = ReactRouterDOM
+const { NavLink } = ReactRouterDOM;
+
 
 export default class MainMenu extends React.Component {
 
@@ -19,8 +20,8 @@ export default class MainMenu extends React.Component {
                 <button onClick={this.onMenuToggle}>Icon</button>
                 {isMenuShown && <div className="apps-container">
                     <NavLink exact to="/misskeep">K</NavLink>
+                    <NavLink exact to="/misteremail/inbox">E</NavLink>
                     <NavLink exact to="/">B</NavLink>
-                    <NavLink exact to="/misteremail">E</NavLink>
                 </div>}
             </div>
         )

@@ -2,6 +2,8 @@ import emailService from '../services/emailService.js';
 import EmailList from '../cmps/EmailList.jsx';
 import EmailCompose from '../cmps/EmailCompose.jsx';
 import EmailDetails from '../cmps/EmailDetails.jsx';
+import EmailStatus from '../cmps/EmailStatus.jsx';
+import EmailFilter from '../cmps/EmailFilter.jsx';
 import { eventBus } from '../../../services/eventBusService.js';
 
 
@@ -11,7 +13,9 @@ export default class EmailApp extends React.Component {
         showStarred: false,
         emails: null,
         composeMail: false,
-        isExpanded: false
+        isExpanded: false,
+        currEmail: null,
+        onlyUnread: false
     }
 
     componentDidMount() {
@@ -28,14 +32,12 @@ export default class EmailApp extends React.Component {
             emailService.removeEmail(id)
                 .then(this.loadEmails());
         })
-        eventBus.on('expandMail', (val) => {
-            this.setState({ isExpanded: val });
+        eventBus.on('expandMail', (data) => {
+            this.setState({ isExpanded: data.isExpanded, currEmail: data.currEmail });
+            this.onReadEmail(data.currEmail.id);
         })
     }
 
-    componentDidUpdate() {
-
-    }
 
     loadEmails() {
         emailService.getEmails(this.state.currentLabel)
@@ -58,10 +60,10 @@ export default class EmailApp extends React.Component {
         event.preventDefault();
         emailService.sentMail(mail)
             .then(this.loadEmails());
+        this.closeMailCompose();
     }
 
     onDraftMail = (mail) => {
-        console.log(mail)
         emailService.draftMail(mail)
             .then(this.loadEmails());
     }
@@ -70,9 +72,17 @@ export default class EmailApp extends React.Component {
         this.setState({ composeMail: false })
     }
 
+    onReadEmail(id) {
+        emailService.readMail(id)
+            .then(this.loadEmails());
+    }
+
+    onlyUnreadToggle = () => {
+        this.setState(prevState => ({ onlyUnread: !prevState.onlyUnread }));
+    }
 
     render() {
-        const { emails, composeMail, isExpanded } = this.state;
+        const { emails, composeMail, isExpanded, currEmail, onlyUnread } = this.state;
 
         return (
             <div className="e-main-container flex">
@@ -82,9 +92,16 @@ export default class EmailApp extends React.Component {
                     <li onClick={() => this.changeLabel('starred')}>Starred</li>
                     <li onClick={() => this.changeLabel('sent')}>Sent</li>
                     <li onClick={() => this.changeLabel('drafts')}>Drafts</li>
+                    <EmailStatus emails={emails} />
                 </div>
-                {!emails ? <h2>Loading...</h2> : (!isExpanded ? <EmailList emails={emails} /> : <EmailDetails />)}
-                {composeMail && <EmailCompose closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} />}
+                <div className="e-emails-container">
+                    <EmailFilter onlyUnreadToggle={this.onlyUnreadToggle} />
+                    {!emails ? <h2>Loading...</h2> :
+                        (!isExpanded ? <EmailList emails={emails} onlyUnread={onlyUnread} search={this.props.search}/> : 
+                        <EmailDetails currEmail={currEmail} />)}
+                    {composeMail &&
+                        <EmailCompose closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} />}
+                </div>
             </div>
         )
     }

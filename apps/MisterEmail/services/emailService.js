@@ -1,6 +1,6 @@
 import storageServices from '../../../services/storageService.js';
 import getRandomInt from '../../../services/getRandomInt.js';
-import storageService from '../../../services/storageService.js';
+
 
 export default {
     getEmails,
@@ -8,7 +8,8 @@ export default {
     starToggle,
     sentMail,
     draftMail,
-    removeEmail
+    removeEmail,
+    readMail
 
 }
 
@@ -42,7 +43,7 @@ let gEmails = storageServices.loadFromStorage(KEY) || {
 function getId() {
     let key = '';
     for (let i = 0; i < 10; i++) {
-        key += String.fromCharCode(getRandomInt(33, 127));
+        key += String.fromCharCode(getRandomInt(65, 91));
     }
     return key;
 }
@@ -54,7 +55,7 @@ function getEmails(filter) {
 }
 
 function readToggle(id) {
-    const keys = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
+    const emails = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
     emails.forEach(email => {
         if (email.id === id) email.isRead = !email.isRead
     });
@@ -87,7 +88,6 @@ function sentMail(mail) {
     newMail.id = getId();
     newMail.isRead = false;
     newMail.isStarred = false;
-    console.log(newMail)
     gEmails.income.unshift({ ...newMail });
     gEmails.sent.unshift({ ...newMail });
     storageServices.saveToStorage(KEY,gEmails);
@@ -99,8 +99,16 @@ function draftMail(mail) {
     newMail.id = getId();
     newMail.isRead = false;
     newMail.isStarred = false;
-    console.log(newMail)
     gEmails.drafts.unshift({ ...newMail });
     storageServices.saveToStorage(KEY,gEmails);
     return Promise.resolve()
+}
+
+function readMail(id) {
+    const emails = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
+    emails.forEach(email => {
+        if (email.id === id) email.isRead = true;
+    });
+    storageServices.saveToStorage(KEY,gEmails);
+    return Promise.resolve();
 }
