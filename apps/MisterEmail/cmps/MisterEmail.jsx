@@ -17,7 +17,7 @@ export default class MisterEmail extends React.Component {
                 <header className="e-header">
                     <div className="e-nav-container flex space-between align-center">
                         <h2 className="e-logo">MisterEmail</h2>
-                        <input placeholder="Search" onChange={this.handleChange} />
+                        <input className="e-Search-mails" placeholder="Search" onChange={this.handleChange} />
                         <MainMenu></MainMenu>
                     </div>
                 </header>

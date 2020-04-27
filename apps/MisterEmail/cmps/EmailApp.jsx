@@ -87,7 +87,7 @@ export default class EmailApp extends React.Component {
         return (
             <div className="e-main-container flex">
                 <div className="e-labels-container flex column">
-                    <button className="e-new-mail" onClick={() => this.onComposeMail()}>Compose</button>
+                    <button className="flex justify-center align-center e-new-mail" onClick={() => this.onComposeMail()}><span>Compose</span></button>
                     <li onClick={() => this.changeLabel('income')}>Inbox</li>
                     <li onClick={() => this.changeLabel('starred')}>Starred</li>
                     <li onClick={() => this.changeLabel('sent')}>Sent</li>
