@@ -51,10 +51,19 @@
 
 .e-email-buttons {
     flex: 0.5;
+    color: #ced6e0;
+}
+
+.e-email-button:hover{
+    
 }
 
 .e-email-buttons *{
     padding: 5px;
+}
+
+.e-email-buttons *:hover{
+    color: #2f3542;
 }
 
 .e-email-address {
@@ -98,7 +107,12 @@
 
 .e-not-starred-btn::before {
     content: '\2606';
-    color: #747d8c;
+    color: #ced6e0;
+}
+
+.e-not-starred-btn:hover::before{
+    content: '\2606';
+    color: #2f3542;
 }
 
 .e-compose-mail {
