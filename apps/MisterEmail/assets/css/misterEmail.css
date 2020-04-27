@@ -61,6 +61,7 @@
 .e-email-buttons {
     flex: 0.5;
     color: #ced6e0;
+    min-width: 100px;
 }
 
 .e-email-buttons * {

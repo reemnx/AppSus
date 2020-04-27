@@ -15,6 +15,7 @@ export default class EmailApp extends React.Component {
         composeMail: false,
         isExpanded: false,
         currEmail: null,
+        onlyUnread: false
     }
 
     componentDidMount() {
@@ -33,12 +34,10 @@ export default class EmailApp extends React.Component {
         })
         eventBus.on('expandMail', (data) => {
             this.setState({ isExpanded: data.isExpanded, currEmail: data.currEmail });
+            this.onReadEmail(data.currEmail.id);
         })
     }
 
-    componentWillUnmount() {
-
-    }
 
     loadEmails() {
         emailService.getEmails(this.state.currentLabel)
@@ -61,10 +60,10 @@ export default class EmailApp extends React.Component {
         event.preventDefault();
         emailService.sentMail(mail)
             .then(this.loadEmails());
+        this.closeMailCompose();
     }
 
     onDraftMail = (mail) => {
-        console.log(mail)
         emailService.draftMail(mail)
             .then(this.loadEmails());
     }
@@ -73,9 +72,17 @@ export default class EmailApp extends React.Component {
         this.setState({ composeMail: false })
     }
 
+    onReadEmail(id) {
+        emailService.readMail(id)
+            .then(this.loadEmails());
+    }
+
+    onlyUnreadToggle = () => {
+        this.setState(prevState => ({ onlyUnread: !prevState.onlyUnread }));
+    }
 
     render() {
-        const { emails, composeMail, isExpanded, currEmail } = this.state;
+        const { emails, composeMail, isExpanded, currEmail, onlyUnread } = this.state;
 
         return (
             <div className="e-main-container flex">
@@ -88,9 +95,12 @@ export default class EmailApp extends React.Component {
                     <EmailStatus emails={emails} />
                 </div>
                 <div className="e-emails-container">
-                    <EmailFilter />
-                    {!emails ? <h2>Loading...</h2> : (!isExpanded ? <EmailList emails={emails} /> : <EmailDetails currEmail={currEmail} />)}
-                    {composeMail && <EmailCompose closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} />}
+                    <EmailFilter onlyUnreadToggle={this.onlyUnreadToggle} />
+                    {!emails ? <h2>Loading...</h2> :
+                        (!isExpanded ? <EmailList emails={emails} onlyUnread={onlyUnread} search={this.props.search}/> : 
+                        <EmailDetails currEmail={currEmail} />)}
+                    {composeMail &&
+                        <EmailCompose closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} />}
                 </div>
             </div>
         )

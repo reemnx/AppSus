@@ -5,8 +5,7 @@ export default class EmailFilter extends React.Component {
 
     readToggle() {
         this.setState(prevState => ({ toggleClass: prevState.toggleClass === 'e-toggle-off' ? 'e-toggle-on' : 'e-toggle-off' }));
-        
-
+        this.props.onlyUnreadToggle();
     }
 
     render() {

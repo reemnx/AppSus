@@ -8,7 +8,8 @@ export default {
     starToggle,
     sentMail,
     draftMail,
-    removeEmail
+    removeEmail,
+    readMail
 
 }
 
@@ -87,7 +88,6 @@ function sentMail(mail) {
     newMail.id = getId();
     newMail.isRead = false;
     newMail.isStarred = false;
-    console.log(newMail)
     gEmails.income.unshift({ ...newMail });
     gEmails.sent.unshift({ ...newMail });
     storageServices.saveToStorage(KEY,gEmails);
@@ -99,8 +99,16 @@ function draftMail(mail) {
     newMail.id = getId();
     newMail.isRead = false;
     newMail.isStarred = false;
-    console.log(newMail)
     gEmails.drafts.unshift({ ...newMail });
     storageServices.saveToStorage(KEY,gEmails);
     return Promise.resolve()
+}
+
+function readMail(id) {
+    const emails = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
+    emails.forEach(email => {
+        if (email.id === id) email.isRead = true;
+    });
+    storageServices.saveToStorage(KEY,gEmails);
+    return Promise.resolve();
 }

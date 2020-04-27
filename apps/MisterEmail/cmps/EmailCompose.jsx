@@ -9,19 +9,15 @@ export default class EmailCompose extends React.Component {
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         const mail = this.state.mail;
-        console.log(mail)
-        if(mail.address || mail.subject || mail.body || mail.sentAt) this.props.onDraftMail(mail);
+        if (mail.address || mail.subject || mail.body || mail.sentAt) this.props.onDraftMail(mail);
     }
 
     onHandleChange = ({ target }) => {
         const field = target.name;
         const value = target.value;
-
-        this.setState(prevState => ({ mail: { ...prevState.mail, [field]: value, sentAt: Date.now() } }), () => {
-            console.log(this.state)
-        })
+        this.setState(prevState => ({ mail: { ...prevState.mail, [field]: value, sentAt: Date.now() } }))
     }
 
     render() {
