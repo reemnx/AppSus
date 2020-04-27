@@ -10,9 +10,10 @@ export class App extends React.Component {
             <Router>
                     <main>
                         <Switch>
-                            <Route component={Home} exact path="/" />
-                            <Route component={MissKeepApp} exact path="/misskeep" />
-                            <Route component={MisterEmail} exact path="/misteremail" />
+                            <Route component={MissKeepApp} path="/misskeep" />
+                            <Route component={MisterEmail} path="/misteremail/:label/:email" />
+                            <Route component={MisterEmail} path="/misteremail/:label" />
+                            <Route component={Home} path="/" />
                         </Switch>
                     </main>
             </Router>

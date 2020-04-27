@@ -1,65 +1,88 @@
-@import url(../../apps/MissKeep/assets/css/style.css) ;
-@import url(../../apps/MisterEmail/assets/css/misterEmail.css) ;
-
-*{
+@import url(../../apps/MissKeep/assets/css/style.css);
+@import url(../../apps/MisterEmail/assets/css/misterEmail.css);
+* {
     box-sizing: border-box;
     outline: none;
 }
-body{
+
+body {
     padding: 0px;
     margin: 0px;
     width: 100vw;
     height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-h2,h3,h4,h5 {
+h2, h3, h4, h5 {
     margin: 0;
     padding: 0;
 }
 
-button{
-cursor: pointer;
+button {
+    cursor: pointer;
 }
 
-.header-container{
+.header-container {
     height: 70px;
-    box-shadow: 0px 0.3px 3px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0.3px 3px 0px rgba(0, 0, 0, 0.75);
 }
-.apps-container *{
+
+.apps-container * {
     margin-right: 10px;
     padding: 15px;
     background-color: lightgray;
     border-radius: 50%;
 }
-.apps-container:last-child{
+
+.apps-container:last-child {
     margin-right: 15px;
 }
+
 /* Helpers */
-.container{
+
+.container {
     width: 90%;
 }
-.relative{
+
+.relative {
     position: relative;
 }
+
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 /* Flex */
-.row-reverse{
+
+.row-reverse {
     flex-direction: row-reverse;
 }
-.flex{
+
+.flex {
     display: flex;
 }
-.column{
+
+.column {
     flex-direction: column;
 }
-.justify-center{
+
+.justify-center {
     justify-content: center;
 }
-.align-center{
+
+.align-center {
     align-items: center;
 }
-.space-between{
+
+.space-between {
     justify-content: space-between;
 }
-.space-around{
+
+.space-around {
     justify-content: space-around;
 }

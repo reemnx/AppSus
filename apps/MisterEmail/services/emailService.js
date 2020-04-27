@@ -1,6 +1,6 @@
 import storageServices from '../../../services/storageService.js';
 import getRandomInt from '../../../services/getRandomInt.js';
-import storageService from '../../../services/storageService.js';
+
 
 export default {
     getEmails,
@@ -42,7 +42,7 @@ let gEmails = storageServices.loadFromStorage(KEY) || {
 function getId() {
     let key = '';
     for (let i = 0; i < 10; i++) {
-        key += String.fromCharCode(getRandomInt(33, 127));
+        key += String.fromCharCode(getRandomInt(65, 91));
     }
     return key;
 }
@@ -54,7 +54,7 @@ function getEmails(filter) {
 }
 
 function readToggle(id) {
-    const keys = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
+    const emails = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
     emails.forEach(email => {
         if (email.id === id) email.isRead = !email.isRead
     });
