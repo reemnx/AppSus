@@ -7,14 +7,14 @@ export default class NoteImg extends React.Component {
 
     state = {
         title: null,
-        imgUrl: null
+        vidUrl: null
     }
 
     onImgNoteSubmit = (ev) =>{
         ev.preventDefault()
         let noteTitle = ev.target.getAttribute('title')
-        let noteImgUrl = ev.target.getAttribute('img')
-        NoteServices.pushImgNotes(noteTitle,noteImgUrl) 
+        let noteVidUrl = ev.target.getAttribute('vid')
+        NoteServices.pushImgNotes(noteTitle,noteVidUrl) 
          .then(res => {
             eventBus.emit('show-msg', `Note "${noteTitle}" added!`)
             this.props.notePushed()
@@ -25,8 +25,8 @@ export default class NoteImg extends React.Component {
         this.setState({title: target.value}) 
     }
 
-    onImgUrlChange = ({target}) =>{
-        this.setState({imgUrl: target.value}) 
+    onVidUrlChange = ({target}) =>{
+        this.setState({vidUrl: target.value}) 
     }
 
     closeNoteCreation = () => {
@@ -34,14 +34,14 @@ export default class NoteImg extends React.Component {
     }
 
     render() {
-        const {title,imgUrl} = this.state
+        const {title,vidUrl} = this.state
         return (
             <div>
                 <form className="MK-img-note-modal flex column align-center" onSubmit={this.onImgNoteSubmit}
-                title={title} img={imgUrl}>
+                title={title} vid={vidUrl}>
                 
                     <input type="text" name="title" placeholder="Title" onKeyUp={this.onTitleChange}/>
-                    <input type="text" name="imgUrl" placeholder="Enter img url" onChange={this.onImgUrlChange}/>
+                    <input type="text" name="vidUrl" placeholder="Enter video link" onChange={this.onVidUrlChange}/>
                     <div className="MK-txt-modal-btns flex space-between">
                         <button onClick={this.closeNoteCreation}>Close</button>
                         <button>Submit Note</button>

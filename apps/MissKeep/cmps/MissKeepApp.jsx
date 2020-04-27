@@ -2,6 +2,8 @@ import MainMenu from '../../../cmps/MainMenu.jsx'
 import NotesServices from '../services/NotesServices.js'
 import NoteTxt from './NoteTxt.jsx'
 import NoteImg from './NoteImg.jsx'
+import NoteVid from './NoteVid.jsx'
+import PinnedNotes from './PinnedNotes.jsx'
 import UserMsg from './UserMsg.jsx'
 import NotesList from './NotesList.jsx'
 
@@ -10,17 +12,21 @@ export default class MissKeepApp extends React.Component {
     state = {
         type: 'NoteText',
         isNoteActive: false,
-        notes: null
+        notes: null,
+        pinnedNotes: null
     }
-
-    updateNotesList=()=>{
+    updateNotesList = () => {
         NotesServices.getNotes()
-         .then(res => {this.setState({isNoteActive: false , notes: res})})
+            .then(res => { this.setState({ isNoteActive: false, notes: res }) })
     }
-
-    componentDidMount(){
+    componentDidMount() {
         NotesServices.getNotes()
-         .then(res => {this.setState({isNoteActive: false , notes: res})})
+            .then(res => { this.setState({ isNoteActive: false, notes: res }) })
+
+        NotesServices.getPinnedNotes()
+            .then(res => {
+                this.setState({ pinnedNotes: res })
+            })
     }
 
     onCloseNoteCreation = () => {
@@ -34,6 +40,10 @@ export default class MissKeepApp extends React.Component {
         this.setState({ type: 'NoteImg' })
 
     }
+    onTypeVid = () => {
+        this.setState({ type: 'NoteVid' })
+
+    }
     onTypeTodo = () => {
         this.setState({ type: 'NoteTodos' })
     }
@@ -41,21 +51,17 @@ export default class MissKeepApp extends React.Component {
     onNoteInputFocus = () => {
         this.setState({ isNoteActive: true })
         console.log(this.state.type);
-        
+
     }
 
-    onNewNotePush = () =>{
+    onNewNotePush = () => {
         NotesServices.getNotes()
-         .then(res => {this.setState({isNoteActive: false , notes: res})})
+            .then(res => { this.setState({ isNoteActive: false, notes: res }) })
     }
 
-    // componentDidUpdate(){
-    //     console.log('UPDATED');
-        
-    // }
 
     render() {
-        const { isNoteActive, type , notes} = this.state
+        const { isNoteActive, type, notes, pinnedNotes } = this.state
         return (
             <React.Fragment>
                 <header className="MK-header flex justify-center align-center">
@@ -72,13 +78,18 @@ export default class MissKeepApp extends React.Component {
                             <span className="MK-text" onClick={this.onTypeTxt}></span>
                             <span className="MK-img" onClick={this.onTypeImg}></span>
                             <span className="MK-list" onClick={this.onTypeTodo}></span>
+                            <span className="MK-vid" onClick={this.onTypeVid}></span>
                         </div>
                     </div>}
 
                     {isNoteActive && (type === 'NoteText') && <NoteTxt notePushed={this.onNewNotePush}
-                     closemodal={this.onCloseNoteCreation} />}
+                        closemodal={this.onCloseNoteCreation} />}
 
                     {isNoteActive && (type === 'NoteImg') && <NoteImg notePushed={this.onNewNotePush} />}
+
+                    {isNoteActive && (type === 'NoteVid') && <NoteVid notePushed={this.onNewNotePush} />}
+
+                    {pinnedNotes && <PinnedNotes updateNoteList={this.updateNotesList} pinned={pinnedNotes}></PinnedNotes>}
 
                     {notes && <NotesList updateNoteList={this.updateNotesList} notes={notes}></NotesList>}
                 </main>

@@ -57,6 +57,9 @@ cursor: pointer;
 .align-center{
     align-items: center;
 }
+.align-start{
+    align-items: flex-start;
+}
 .space-between{
     justify-content: space-between;
 }
