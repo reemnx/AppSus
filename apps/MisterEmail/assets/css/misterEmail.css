@@ -3,79 +3,125 @@
     border-bottom: 1px solid #dfe4ea;
     color: #57606f;
 }
+
 .e-nav-container, .e-main-container {
     width: 90%;
     height: 100%;
     margin: 0 auto;
 }
 
-.e-labels-container{
+.e-labels-container {
     width: 250px;
     height: 100%;
 }
 
-.e-labels-container *{
-    margin: 20px; 
+.e-labels-container * {
+    margin: 20px;
     cursor: pointer;
 }
 
-.e-email-list-table{
+.e-email-list-table {
     width: 100%;
     height: 100%;
 }
 
-.e-email-list-container{
+.e-email-list-container {
     width: 100%;
 }
 
-.e-email-list-container tr{
+.e-email-list-container tr {
     display: flex;
     justify-content: space-between;
     padding: 15px;
     border-bottom: 1px solid #dfe4ea;
     cursor: pointer;
     color: #2f3542;
-    height: 50px;
+    height: 60px;
 }
 
-.e-email-list-container tr:hover{
+.e-email-list-container tr:hover {
     box-shadow: 0px 0px 2px #57606f;
 }
 
-.e-email-buttons{
-    flex: 0.5;
+.e-email-list-container td{
+    padding: 5px;
+    overflow: hidden;
+    line-height: 20px;
 }
-.e-email-subject{
+
+.e-email-buttons {
+    flex: 0.5;
+    color: #ced6e0;
+}
+
+.e-email-button:hover{
+    
+}
+
+.e-email-buttons *{
+    padding: 5px;
+}
+
+.e-email-buttons *:hover{
+    color: #2f3542;
+}
+
+.e-email-address {
+    flex: 1.5;
+}
+
+.e-email-subject {
     flex: 1;
 }
 
-.e-email-body{
+.e-email-body {
     flex: 3;
-    overflow: hidden;
 }
 
-.e-email-date{
+.e-email-date {
     flex: 1;
     text-align: end;
 }
 
-.e-read{
+.e-read {
     font-weight: normal;
     background-color: #f1f2f6;
 }
 
-.e-unread{
+.e-unread {
     font-weight: bold;
 }
 
-.e-compose-mail{
+.e-read-btn::before{
+    content: '\2709';
+}
+
+.e-unread-btn::before{
+    content: '\2709';
+}
+
+.e-starred-btn::before {
+    content: '\2605';
+    color: gold;
+}
+
+.e-not-starred-btn::before {
+    content: '\2606';
+    color: #ced6e0;
+}
+
+.e-not-starred-btn:hover::before{
+    content: '\2606';
+    color: #2f3542;
+}
+
+.e-compose-mail {
     position: absolute;
     bottom: 0;
     right: 5%;
     width: 500px;
 }
 
-.e-compose-mail textarea{
+.e-compose-mail textarea {
     height: 300px;
 }
-
