@@ -4,8 +4,7 @@ export default class EmailCompose extends React.Component {
             address: '',
             subject: '',
             body: '',
-            sentAt: '',
-
+            sentAt: ''
         }
     }
 

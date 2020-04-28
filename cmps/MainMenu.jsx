@@ -20,7 +20,7 @@ export default class MainMenu extends React.Component {
                 <button onClick={this.onMenuToggle}>Icon</button>
                 {isMenuShown && <div className="apps-container">
                     <NavLink exact to="/misskeep">K</NavLink>
-                    <NavLink exact to="/misteremail/inbox">E</NavLink>
+                    <NavLink exact to="/email">E</NavLink>
                     <NavLink exact to="/">B</NavLink>
                 </div>}
             </div>

@@ -1,3 +1,7 @@
+a{
+    text-decoration: none;
+}
+
 .e-header {
     height: 60px;
     border-bottom: 1px solid #dfe4ea;
@@ -8,6 +12,17 @@
     width: 90%;
     height: 100%;
     margin: 0 auto;
+}
+
+.e-Search-mails{
+    height: 45px;
+    width: 500px;
+    font-size: 1.3rem;
+    border: 0;
+    background-color: #f1f2f6;
+    color: #2f3542;
+    border-radius: 4px;
+    text-align: center;
 }
 
 .e-labels-container {
@@ -21,10 +36,42 @@
     cursor: pointer;
 }
 
+.e-labels-container a{
+    color: #2f3542;
+}
+
+.e-unread-counter{
+    font-weight: bold;
+}
+
 .e-emails-container {
     width: 100%;
-
 }
+
+.e-new-mail{
+    height: 50px;
+    width: 150px;
+    border: 0;
+    border-radius: 4px;
+    background-color: #2ed573;
+    transition: .25s;
+    align-self: center;
+}
+
+.e-new-mail:hover{
+    letter-spacing: 1px;
+    width: 160px;
+    height: 60px;
+    margin: 15px;
+}
+
+.e-new-mail span{
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
 
 .e-email-list-table {
     width: 100%;
@@ -66,6 +113,7 @@
 
 .e-email-buttons * {
     padding: 5px;
+    cursor: pointer;
 }
 
 .e-email-buttons *:hover {
@@ -99,10 +147,6 @@
 }
 
 .e-read-btn::before {
-    content: '\2709';
-}
-
-.e-unread-btn::before {
     content: '\2709';
 }
 
@@ -153,10 +197,6 @@
     letter-spacing: 1px;
     margin: 0;
     border-radius: 4px;
-}
-
-.e-toggle-filter-container{
-    justify-content: flex-end;
 }
 
 .e-toggle-filter {

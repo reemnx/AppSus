@@ -1,3 +1,5 @@
+const { Route, Switch, Link } = ReactRouterDOM;
+import MainMenu from '../../../cmps/MainMenu.jsx';
 import emailService from '../services/emailService.js';
 import EmailList from '../cmps/EmailList.jsx';
 import EmailCompose from '../cmps/EmailCompose.jsx';
@@ -9,16 +11,15 @@ import { eventBus } from '../../../services/eventBusService.js';
 
 export default class EmailApp extends React.Component {
     state = {
-        currentLabel: 'income',
-        showStarred: false,
+        search: '',
         emails: null,
         composeMail: false,
-        isExpanded: false,
-        currEmail: null,
-        onlyUnread: false
+        onlyUnread: false,
+        unreadEmails: null
     }
 
     componentDidMount() {
+
         this.loadEmails();
         eventBus.on('read-toggle', (id) => {
             emailService.readToggle(id)
@@ -32,28 +33,34 @@ export default class EmailApp extends React.Component {
             emailService.removeEmail(id)
                 .then(this.loadEmails());
         })
-        eventBus.on('expandMail', (data) => {
-            this.setState({ isExpanded: data.isExpanded, currEmail: data.currEmail });
-            this.onReadEmail(data.currEmail.id);
-        })
+
     }
 
+    handleChange = ({ target }) => {
+        this.setState({ search: target.value });
+    }
+
+    componentDidUpdate(prevProps) {     
+        if (prevProps.match.params.label !== this.props.match.params.label) {
+            this.loadEmails()
+        }
+        console.log(this.props.history);
+        console.log(this.props.match.path);
+    }
 
     loadEmails() {
-        emailService.getEmails(this.state.currentLabel)
+        emailService.query(this.props.match.params.label || 'income')
             .then(res => {
-                this.setState({ emails: res });
+                this.setState({ emails: res.mails, unreadEmails: res.unreadCnt });
             })
-    }
-
-    changeLabel(label) {
-        this.state.currentLabel = label;
-        this.state.isExpanded = false;
-        this.loadEmails();
     }
 
     onComposeMail() {
         this.setState({ composeMail: true })
+    }
+
+    closeMailCompose = () => {
+        this.setState({ composeMail: false })
     }
 
     onSentMail = (mail, event) => {
@@ -68,41 +75,51 @@ export default class EmailApp extends React.Component {
             .then(this.loadEmails());
     }
 
-    closeMailCompose = () => {
-        this.setState({ composeMail: false })
-    }
-
-    onReadEmail(id) {
-        emailService.readMail(id)
-            .then(this.loadEmails());
-    }
-
     onlyUnreadToggle = () => {
         this.setState(prevState => ({ onlyUnread: !prevState.onlyUnread }));
     }
 
+    onSortBy = (val) => {
+        emailService.sortBy(val)
+            .then(this.loadEmails());
+    }
+
     render() {
-        const { emails, composeMail, isExpanded, currEmail, onlyUnread } = this.state;
+        const { emails, composeMail, search, onlyUnread, unreadEmails } = this.state;
+        const {pathname} = this.props.history.location;
 
         return (
-            <div className="e-main-container flex">
-                <div className="e-labels-container flex column">
-                    <button className="e-new-mail" onClick={() => this.onComposeMail()}>Compose</button>
-                    <li onClick={() => this.changeLabel('income')}>Inbox</li>
-                    <li onClick={() => this.changeLabel('starred')}>Starred</li>
-                    <li onClick={() => this.changeLabel('sent')}>Sent</li>
-                    <li onClick={() => this.changeLabel('drafts')}>Drafts</li>
-                    <EmailStatus emails={emails} />
-                </div>
-                <div className="e-emails-container">
-                    <EmailFilter onlyUnreadToggle={this.onlyUnreadToggle} />
-                    {!emails ? <h2>Loading...</h2> :
-                        (!isExpanded ? <EmailList emails={emails} onlyUnread={onlyUnread} search={this.props.search}/> : 
-                        <EmailDetails currEmail={currEmail} />)}
+            <div className="e-main-container flex column">
+                <header className="e-header">
+                    <div className="e-nav-container flex space-between align-center">
+                        <h2 className="e-logo">MisterEmail</h2>
+                        <input className="e-Search-mails" placeholder="Search" onChange={this.handleChange} />
+                        <MainMenu></MainMenu>
+                    </div>
+                </header>
+                <main className="flex">
+                    <div className="e-labels-container flex column">
+                        <button className="flex justify-center align-center e-new-mail" onClick={() => this.onComposeMail()}>
+                            <span>Compose</span></button>
+                        <Link to="/email/label/income">Inbox <span className="e-unread-counter">{unreadEmails ? unreadEmails : ''}</span></Link>
+                        <Link to="/email/label/starred">Starred</Link>
+                        <Link to="/email/label/sent">Sent</Link>
+                        <Link to="/email/label/drafts">Drafts</Link>
+                        <EmailStatus emails={emails} />
+                    </div>
+                    <div className="e-emails-container">
+                        {(pathname.includes('label') || pathname === '/email') && <EmailFilter onlyUnreadToggle={this.onlyUnreadToggle} onSortBy={this.onSortBy} />}
+                        {emails && <Switch>
+                            <Route exact component={EmailDetails} path="/email/:emailId" />
+                            <Route component={() =>
+                                <EmailList history={this.props.history} emails={emails} search={search} onlyUnread={onlyUnread} />} path="/email" />
+                        </Switch>}
+                    </div>
                     {composeMail &&
                         <EmailCompose closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} />}
-                </div>
+                </main>
             </div>
         )
     }
 }
+

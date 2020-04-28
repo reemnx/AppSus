@@ -3,19 +3,21 @@ import getRandomInt from '../../../services/getRandomInt.js';
 
 
 export default {
-    getEmails,
+    query,
+    getEmailById,
     readToggle,
     starToggle,
     sentMail,
     draftMail,
     removeEmail,
-    readMail
-
+    readMail,
+    sortBy
 }
 
 const KEY = 'emails';
 
-let gEmails = storageServices.loadFromStorage(KEY) || {
+let gEmails = storageServices.loadFromStorage(KEY) ||
+{
     income: [
         { id: getId(), address: 'no-replay@gmail.com', subject: 'testtt testetetetet tstet?', body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae minima magni quas maiores porro et, nulla cupiditate facilis officia id eius accusamus veniam velit, facere tempore doloribus nostrum dolores neque enim nobis aut at eos quaerat reprehenderit? Obcaecati veniam ex odio unde ratione quod recusandae, fuga impedit. Quo, at? Voluptatibus.', isRead: false, isStarred: true, sentAt: 1551133930594 },
         { id: getId(), address: 'no-replay@gmail.com', subject: 'Wassap?', body: 'Pick up2!', isRead: true, isStarred: false, sentAt: 1551133930594 },
@@ -39,6 +41,9 @@ let gEmails = storageServices.loadFromStorage(KEY) || {
         { id: getId(), address: 'no-replay@gmail.com', subject: 'Wassap?', body: 'Pick up19!', isRead: false, isStarred: false, sentAt: 1551133930594 },
     ]
 }
+storageServices.saveToStorage(KEY, gEmails);
+sortBy('sentAt');
+
 
 function getId() {
     let key = '';
@@ -48,10 +53,20 @@ function getId() {
     return key;
 }
 
-function getEmails(filter) {
+function query(lable) {
+    let unreadCnt = 0;
+    gEmails.income.forEach(mail => {
+        if (!mail.isRead) unreadCnt++;
+    })
     const allLabelsMails = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
-    const mails = (filter !== 'starred') ? gEmails[filter].slice() : allLabelsMails.filter(email => email.isStarred === true);
-    return Promise.resolve(mails);
+    const mails = (lable !== 'starred') ? gEmails[lable].slice() : allLabelsMails.filter(email => email.isStarred === true);
+    return Promise.resolve({ mails, unreadCnt });
+}
+
+function getEmailById(id) {
+    const allLabelsMails = [...gEmails.income, ...gEmails.sent, ...gEmails.drafts];
+    const currEmail = allLabelsMails.find(email => email.id === id);
+    return Promise.resolve(currEmail);
 }
 
 function readToggle(id) {
@@ -59,7 +74,7 @@ function readToggle(id) {
     emails.forEach(email => {
         if (email.id === id) email.isRead = !email.isRead
     });
-    storageServices.saveToStorage(KEY,gEmails);
+    storageServices.saveToStorage(KEY, gEmails);
     return Promise.resolve();
 }
 
@@ -68,7 +83,7 @@ function starToggle(id) {
     emails.forEach(email => {
         if (email.id === id) email.isStarred = !email.isStarred
     });
-    storageServices.saveToStorage(KEY,gEmails);
+    storageServices.saveToStorage(KEY, gEmails);
     return Promise.resolve();
 }
 
@@ -76,10 +91,10 @@ function removeEmail(id) {
     const keys = Object.keys(gEmails);
     keys.forEach(key => {
         gEmails[key].forEach((email, idx) => {
-            if (email.id === id) gEmails[key].splice(idx ,1);
+            if (email.id === id) gEmails[key].splice(idx, 1);
         })
     });
-    storageServices.saveToStorage(KEY,gEmails);
+    storageServices.saveToStorage(KEY, gEmails);
     return Promise.resolve();
 }
 
@@ -90,7 +105,7 @@ function sentMail(mail) {
     newMail.isStarred = false;
     gEmails.income.unshift({ ...newMail });
     gEmails.sent.unshift({ ...newMail });
-    storageServices.saveToStorage(KEY,gEmails);
+    storageServices.saveToStorage(KEY, gEmails);
     return Promise.resolve();
 }
 
@@ -100,7 +115,7 @@ function draftMail(mail) {
     newMail.isRead = false;
     newMail.isStarred = false;
     gEmails.drafts.unshift({ ...newMail });
-    storageServices.saveToStorage(KEY,gEmails);
+    storageServices.saveToStorage(KEY, gEmails);
     return Promise.resolve()
 }
 
@@ -109,6 +124,28 @@ function readMail(id) {
     emails.forEach(email => {
         if (email.id === id) email.isRead = true;
     });
-    storageServices.saveToStorage(KEY,gEmails);
+    storageServices.saveToStorage(KEY, gEmails);
+    return Promise.resolve();
+}
+
+function sortBy(val) {
+    const keys = Object.keys(gEmails);
+    if (val === 'sentAt') {
+        keys.forEach(key => {
+            gEmails[key].sort(function (a, b) {
+                return b[val] - a[val]
+            })
+        })
+    } else {
+        keys.forEach(key => {
+            gEmails[key].sort(function (a, b) {
+                var subjectA = a[val].toUpperCase();
+                var subjectB = b[val].toUpperCase();
+                if (subjectA < subjectB) return -1;
+                if (subjectA > subjectB) return 1;
+                return 0;
+            });
+        })
+    }
     return Promise.resolve();
 }
