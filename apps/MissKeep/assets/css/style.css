@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 h4 {
     margin: 0px;
     padding: 0px;
@@ -62,15 +63,16 @@ h4 {
     z-index: 999;
     bottom: 15px;
     left: 20px;
-    color: rgb(255, 255, 255);
-    background-color: #363636;
-    border: 1.3px solid rgb(255, 251, 0);
+    color: rgb(228, 228, 228);
+    background-color: #313131;
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
     width: fit-content;
     max-width: 500px;
-    font-family: cursive;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 530;
+    letter-spacing: 1px;
     font-size: 1.2rem;
-    padding: 10px 20px;
+    padding: 15px 25px;
     border-radius: 10px;
 }
 
@@ -84,7 +86,6 @@ h4 {
     min-height: 100vh;
     height: fit-content;
     background-color: #202124;
-    
 }
 
 .MK-create-note-wraper input {
@@ -127,6 +128,7 @@ h4 {
 
 .MK-note-header {
     width: 100%;
+    margin-bottom: 5px;
 }
 
 .MK-txt-note-modal {
@@ -199,27 +201,22 @@ h4 {
 }
 
 .MK-notes-wraper {
-    margin-top: 20px;
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
-    -webkit-column-gap: 20px;
-    -moz-column-gap: 20px;
-    column-gap: 20px;
-    
-    
+   width: 90%;
+   margin: 20px 0px;
+   columns: 4;
+   column-gap: 40px;
 }
 
 .MK-txt-note {
-    width: 300px;
+    width: 100%;
     text-align: center;
-    border: 2px solid rgb(187, 187, 187);
+    border: 0.5px solid rgb(110, 110, 110);
     border-radius: 10px;
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
-    padding: 5px 10px;
-    margin-bottom: 15px;
+    padding: 10px ;
+    margin: 0 0 20px;
     height: fit-content;
-    
+    overflow: hidden;
     -webkit-column-break-inside: avoid;
     page-break-inside: avoid;
     break-inside: avoid;
@@ -230,7 +227,7 @@ h4 {
     font-family: cursive;
     font-size: 1.2rem;
     letter-spacing: 1px;
-    margin: 10px 0px;
+    margin-bottom: 20px;
 }
 
 .MK-txt-note p {
@@ -245,7 +242,7 @@ h4 {
 }
 
 .MK-txt-note button {
-    background-color: #273164;
+    background-color: #4d5fba;
     color: rgb(255, 255, 255);
     font-weight: 600;
     border-radius: 5px;
@@ -256,7 +253,7 @@ h4 {
 
 .MK-txt-note button:hover {
     cursor: pointer;
-    background-color: rgb(57, 120, 255);
+    background-color: #2941b8;
 }
 
 .MK-text {
@@ -330,7 +327,7 @@ h4 {
 .MK-img-note-modal {
     width: 400px;
     padding: 10px 15px;
-    border: 2px solid #525355;
+    border: 0.5px solid rgb(110, 110, 110);
     border-radius: 10px;
 }
 
@@ -350,7 +347,7 @@ h4 {
 
 .MK-img-note {
     text-align: center;
-    border: 2px solid rgb(187, 187, 187);
+    border: 0.5px solid rgb(110, 110, 110);
     border-radius: 10px;
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
     padding: 10px 10px 5px 10px;
@@ -363,7 +360,7 @@ h4 {
 
 .MK-img-note h2 {
     color: rgb(180, 180, 180);
-    font-family: cursive;
+    font-family: 'Open Sans', sans-serif;
     font-size: 1.2rem;
     letter-spacing: 1px;
     margin: 10px 0px;
@@ -406,7 +403,7 @@ h4 {
 
 .MK-vid-note {
     text-align: center;
-    border: 2px solid rgb(187, 187, 187);
+    border: 0.5px solid rgb(110, 110, 110);
     border-radius: 10px;
     box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
     padding: 10px 10px 5px 10px;
@@ -451,7 +448,7 @@ h4 {
     background-color: rgb(255, 47, 47);
 }
 
-.MK-vid-note iframe {
+.MK-vid-note-content iframe {
     width: 100%;
     margin-bottom: 10px;
 }
@@ -459,19 +456,16 @@ h4 {
 /* Pinned notes ------------------------------------------------------- */
 
 .MK-pinned-notes {
-    border-bottom: 1px solid rgba(192, 192, 192, 0.233);
-    padding: 20px 0px;
-    margin-bottom: 15px;
-    -webkit-column-count: 4;
-    -moz-column-count: 4;
-    column-count: 4;
-    -webkit-column-gap: 20px;
-    -moz-column-gap: 20px;
-    column-gap: 20px;
+    width: 90%;
+    margin: 20px 0px;
+    columns: 4;
+    column-gap: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(75, 75, 75, 0.432);
 }
 
 .MK-pinned-notes button {
-    background-color: rgb(109, 109, 109) !important;
+    background-color: rgb(198, 185, 71) !important;
     color: black;
 }
 
@@ -480,34 +474,41 @@ h4 {
 }
 
 /* Todos notes------------------------------------------- */
-.list-items{
+
+.list-items {
     width: 100%;
 }
-.todo-note-item-wraper{
+
+.todo-note-item-wraper {
     width: 100%;
     border-bottom: 1px solid rgb(92, 92, 92);
     padding-bottom: 7px;
     margin-bottom: 10px;
 }
-.todo-note-item-wraper h3{
+
+.todo-note-item-wraper h3 {
     max-width: 80%;
     color: white;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1rem;
     font-weight: 400;
 }
-.todo-note-item-wraper h4{
+
+.todo-note-item-wraper h4 {
     color: white;
     font-family: cursive;
     font-size: 0.6rem;
 }
-.MK-checkbox{
+
+.MK-checkbox {
     width: 85%;
 }
-.MK-line{
+
+.MK-line {
     text-decoration-line: line-through;
 }
-.MK-todos-add-btn{
+
+.MK-todos-add-btn {
     border: none;
     outline: none;
     background-color: rgb(0, 201, 140);
@@ -519,4 +520,90 @@ h4 {
     align-self: flex-start;
     font-size: .7rem;
     margin-bottom: 20px;
+}
+
+.MK-todos-items-container {
+    width: 100%;
+}
+
+.MK-add-todo-item {
+    margin-bottom: 15px;
+    width: 80px !important;
+    background-color: rgb(44, 146, 95) !important;
+}
+
+.MK-add-todo-item:hover {
+    cursor: pointer;
+    background-color: rgb(16, 122, 69) !important;
+}
+
+@media (max-width: 760px){
+    .MK-header nav{
+        width: 100%;
+        padding: 0px 10px;
+    }
+    .MK-header nav input{
+        width: 50%;
+    }
+    .MK-create-note-wraper input{
+        width: 215px;
+        height: 70px;
+    }
+    .MK-notes-types-wraper{
+        width: 190px;
+        height: 70px;
+        padding-right: 10px;
+    }
+    .MK-create-note-wraper{
+        margin: 0px auto 40px auto;
+    }
+    .MK-notes-wraper {
+        width: 90%;
+        margin: 20px auto;
+        columns: 1;
+        column-gap: 40px;
+     }
+     .MK-pinned-notes{
+        width: 90%;
+        margin: 20px auto;
+        columns: 1;
+        column-gap: 40px;
+     }
+     .MK-notes-wraper h2{
+         font-family: Arial, Helvetica, sans-serif;
+         font-weight: 600;
+         color: rgb(255, 255, 255);
+     }
+     .MK-notes-wraper button {
+         padding: 10px;
+         width: 70%;
+     }
+     .MK-pinned-notes h2{
+         font-family: Arial, Helvetica, sans-serif;
+         font-weight: 600;
+         color: rgb(255, 255, 255);
+     }
+     .MK-pinned-notes button {
+         padding: 10px;
+         width: 70%;
+     }
+     .MK-user-msg {
+        position: fixed;
+        z-index: 999;
+        bottom: 15px;
+        left: 10px;
+        color: rgb(228, 228, 228);
+        background-color: #272727;
+        box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
+        border: 1.3px solid #F4B505;
+        width: fit-content;
+        max-width: 500px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 450;
+        letter-spacing: 0.8px;
+        font-size: 1rem;
+        padding: 10px 20px;
+        border-radius: 10px;
+    }
+    
 }

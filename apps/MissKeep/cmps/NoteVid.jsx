@@ -10,23 +10,23 @@ export default class NoteImg extends React.Component {
         vidUrl: null
     }
 
-    onImgNoteSubmit = (ev) =>{
+    onImgNoteSubmit = (ev) => {
         ev.preventDefault()
         let noteTitle = ev.target.getAttribute('title')
         let noteVidUrl = ev.target.getAttribute('vid')
-        NoteServices.pushVidNotes(noteTitle,noteVidUrl) 
-         .then(res => {
-            eventBus.emit('show-msg', `Note "${noteTitle}" added!`)
-            this.props.notePushed()
-         })   
+        NoteServices.pushVidNotes(noteTitle, noteVidUrl)
+            .then(res => {
+                eventBus.emit('show-msg', `Note "${noteTitle}" added!`)
+                this.props.notePushed()
+            })
     }
 
-    onTitleChange = ({target}) =>{
-        this.setState({title: target.value}) 
+    onTitleChange = ({ target }) => {
+        this.setState({ title: target.value })
     }
 
-    onVidUrlChange = ({target}) =>{
-        this.setState({vidUrl: target.value}) 
+    onVidUrlChange = ({ target }) => {
+        this.setState({ vidUrl: target.value })
     }
 
     closeNoteCreation = () => {
@@ -34,14 +34,14 @@ export default class NoteImg extends React.Component {
     }
 
     render() {
-        const {title,vidUrl} = this.state
+        const { title, vidUrl } = this.state
         return (
             <div>
                 <form className="MK-img-note-modal flex column align-center" onSubmit={this.onImgNoteSubmit}
-                title={title} vid={vidUrl}>
-                
-                    <input type="text" name="title" placeholder="Title" onKeyUp={this.onTitleChange}/>
-                    <input type="text" name="vidUrl" placeholder="Enter video link" onChange={this.onVidUrlChange}/>
+                    title={title} vid={vidUrl}>
+
+                    <input type="text" name="title" placeholder="Title" onKeyUp={this.onTitleChange} />
+                    <input type="text" value={vidUrl} name="vidUrl" placeholder="Enter video link" onChange={this.onVidUrlChange} />
                     <div className="MK-txt-modal-btns flex space-between">
                         <button onClick={this.closeNoteCreation}>Close</button>
                         <button>Submit Note</button>
