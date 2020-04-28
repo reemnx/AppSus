@@ -12,25 +12,25 @@ export default class CreateNoteModal extends React.Component {
     }
 
     onTypeTxt = () => {
-        this.setState({ type: 'NoteText', createNotePlaceholder: 'Click to create Text note' }, () => {
+        this.setState({ type: 'NoteText', createNotePlaceholder: 'Active Type: Text' }, () => {
             this.setChanges()
         })
     }
 
     onTypeImg = () => {
-        this.setState({ type: 'NoteImg', createNotePlaceholder: 'Click to create Image note' }, () => {
+        this.setState({ type: 'NoteImg', createNotePlaceholder: 'Active Type: Image' }, () => {
             this.setChanges()
         })
     }
 
     onTypeVid = () => {
-        this.setState({ type: 'NoteVid', createNotePlaceholder: 'Click to create Video note' }, () => {
+        this.setState({ type: 'NoteVid', createNotePlaceholder: 'Active Type: Video' }, () => {
             this.setChanges()
         })
     }
 
     onTypeTodo = () => {
-        this.setState({ type: 'NoteTodos', createNotePlaceholder: 'Click to create List note' }, () => {
+        this.setState({ type: 'NoteTodos', createNotePlaceholder: 'Active Type: List' }, () => {
             this.setChanges()
         })
     }
