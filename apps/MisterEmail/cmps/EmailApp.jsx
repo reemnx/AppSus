@@ -1,4 +1,4 @@
-const { Route, Switch, Link, Router } = ReactRouterDOM;
+const { Route, Switch, Link } = ReactRouterDOM;
 import MainMenu from '../../../cmps/MainMenu.jsx';
 import emailService from '../services/emailService.js';
 import EmailList from '../cmps/EmailList.jsx';
@@ -14,10 +14,12 @@ export default class EmailApp extends React.Component {
         search: '',
         emails: null,
         composeMail: false,
-        onlyUnread: false
+        onlyUnread: false,
+        unreadEmails: null
     }
 
     componentDidMount() {
+
         this.loadEmails();
         eventBus.on('read-toggle', (id) => {
             emailService.readToggle(id)
@@ -31,22 +33,25 @@ export default class EmailApp extends React.Component {
             emailService.removeEmail(id)
                 .then(this.loadEmails());
         })
+
     }
 
     handleChange = ({ target }) => {
         this.setState({ search: target.value });
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {     
         if (prevProps.match.params.label !== this.props.match.params.label) {
             this.loadEmails()
         }
+        console.log(this.props.history);
+        console.log(this.props.match.path);
     }
 
     loadEmails() {
-        emailService.query(this.props.match.params.label || 'income', this.state.search)
+        emailService.query(this.props.match.params.label || 'income')
             .then(res => {
-                this.setState({ emails: res });
+                this.setState({ emails: res.mails, unreadEmails: res.unreadCnt });
             })
     }
 
@@ -74,8 +79,14 @@ export default class EmailApp extends React.Component {
         this.setState(prevState => ({ onlyUnread: !prevState.onlyUnread }));
     }
 
+    onSortBy = (val) => {
+        emailService.sortBy(val)
+            .then(this.loadEmails());
+    }
+
     render() {
-        const { emails, composeMail, search, isExpanded, currEmail, onlyUnread } = this.state;
+        const { emails, composeMail, search, onlyUnread, unreadEmails } = this.state;
+        const {pathname} = this.props.history.location;
 
         return (
             <div className="e-main-container flex column">
@@ -90,19 +101,18 @@ export default class EmailApp extends React.Component {
                     <div className="e-labels-container flex column">
                         <button className="flex justify-center align-center e-new-mail" onClick={() => this.onComposeMail()}>
                             <span>Compose</span></button>
-                        <Link to="/email/label/income">Inbox</Link>
+                        <Link to="/email/label/income">Inbox <span className="e-unread-counter">{unreadEmails ? unreadEmails : ''}</span></Link>
                         <Link to="/email/label/starred">Starred</Link>
                         <Link to="/email/label/sent">Sent</Link>
                         <Link to="/email/label/drafts">Drafts</Link>
                         <EmailStatus emails={emails} />
                     </div>
                     <div className="e-emails-container">
-                        <EmailFilter onlyUnreadToggle={this.onlyUnreadToggle} />
+                        {(pathname.includes('label') || pathname === '/email') && <EmailFilter onlyUnreadToggle={this.onlyUnreadToggle} onSortBy={this.onSortBy} />}
                         {emails && <Switch>
                             <Route exact component={EmailDetails} path="/email/:emailId" />
                             <Route component={() =>
                                 <EmailList history={this.props.history} emails={emails} search={search} onlyUnread={onlyUnread} />} path="/email" />
-
                         </Switch>}
                     </div>
                     {composeMail &&

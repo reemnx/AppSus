@@ -36,9 +36,16 @@ a{
     cursor: pointer;
 }
 
+.e-labels-container a{
+    color: #2f3542;
+}
+
+.e-unread-counter{
+    font-weight: bold;
+}
+
 .e-emails-container {
     width: 100%;
-
 }
 
 .e-new-mail{
@@ -106,6 +113,7 @@ a{
 
 .e-email-buttons * {
     padding: 5px;
+    cursor: pointer;
 }
 
 .e-email-buttons *:hover {
@@ -139,10 +147,6 @@ a{
 }
 
 .e-read-btn::before {
-    content: '\2709';
-}
-
-.e-unread-btn::before {
     content: '\2709';
 }
 
@@ -193,10 +197,6 @@ a{
     letter-spacing: 1px;
     margin: 0;
     border-radius: 4px;
-}
-
-.e-toggle-filter-container{
-    justify-content: flex-end;
 }
 
 .e-toggle-filter {

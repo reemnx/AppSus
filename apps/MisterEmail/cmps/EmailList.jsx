@@ -13,8 +13,7 @@ export default function EmailList(props) {
         <table className="e-email-list-table no-select">
             <tbody className="e-email-list-container">
                 {emailsToShow.map(email =>
-                    <EmailPreview history={props.history} key={email.id} email={email} >
-                    </EmailPreview>
+                    <EmailPreview history={props.history} key={email.id} email={email} />
                 )}
             </tbody>
         </table>

@@ -2,7 +2,7 @@ import { eventBus } from '../../../services/eventBusService.js';
 import GetTime from './GetTime.jsx';
 
 export default function EmailPreview(props) {
-
+    
     const onReadToggle = (event, id) => {
         event.stopPropagation();
         eventBus.emit('read-toggle', id);
@@ -26,7 +26,7 @@ export default function EmailPreview(props) {
         <tr className={!props.email.isRead ? 'e-unread' : 'e-read'} onClick={expandMail}>
             <td className="e-email-buttons flex align-center">
                 <h3 className={props.email.isStarred ? 'e-starred-btn' : 'e-not-starred-btn'} onClick={(e) => onStarredToggle(e, props.email.id)} ></h3>
-                <h3 className={props.email.isStarred ? 'e-read-btn' : 'e-unread-btn'} onClick={(e) => onReadToggle(e, props.email.id)}></h3>
+                <h3 className='e-read-btn' onClick={(e) => onReadToggle(e, props.email.id)}></h3>
                 <h3 className="e-remove-btn" onClick={(e) => onRemoveEmail(e, props.email.id)}>🗑</h3>
             </td>
             <td className="e-email-address">{props.email.address}</td>
