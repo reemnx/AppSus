@@ -2,7 +2,7 @@
 export default class CreateNoteModal extends React.Component {
 
     state = {
-        createNotePlaceholder: 'Whats on your mind?',
+        createNotePlaceholder: 'Take a note...',
         type: null,
         isNoteActive: false
     }
@@ -36,6 +36,11 @@ export default class CreateNoteModal extends React.Component {
     }
 
     onNoteInputFocus = () => {
+        if(!this.state.type){
+            this.setState({ isNoteActive: true , type: 'NoteText'}, () => {
+                this.setChanges()
+            }) 
+        }
         this.setState({ isNoteActive: true }, () => {
             this.setChanges()
         })

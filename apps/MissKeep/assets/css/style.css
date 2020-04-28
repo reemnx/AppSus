@@ -545,12 +545,18 @@ h4 {
     .MK-header nav input{
         width: 50%;
     }
+    .MK-content-container{
+        justify-content: center;
+    }
+    .MK-create-note-wraper{
+        width: 90%;
+    }
     .MK-create-note-wraper input{
-        width: 215px;
+        width: 180px;
         height: 70px;
     }
     .MK-notes-types-wraper{
-        width: 190px;
+        width: 200px;
         height: 70px;
         padding-right: 10px;
     }
