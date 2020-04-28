@@ -1,6 +1,7 @@
-import EmailPreview from '../cmps/EmailPreview.jsx'
+import EmailPreview from '../cmps/EmailPreview.jsx';
 
 export default function EmailList(props) {
+
     let emailsToShow;
     const search = props.search.toLowerCase();
 
@@ -11,7 +12,10 @@ export default function EmailList(props) {
     return (
         <table className="e-email-list-table no-select">
             <tbody className="e-email-list-container">
-                {emailsToShow.map(email => <EmailPreview email={email} key={email.id} />)}
+                {emailsToShow.map(email =>
+                    <EmailPreview history={props.history} key={email.id} email={email} >
+                    </EmailPreview>
+                )}
             </tbody>
         </table>
     )

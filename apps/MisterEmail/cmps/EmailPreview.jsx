@@ -1,6 +1,5 @@
 import { eventBus } from '../../../services/eventBusService.js';
 import GetTime from './GetTime.jsx';
-const { Link } = ReactRouterDOM
 
 export default function EmailPreview(props) {
 
@@ -19,13 +18,12 @@ export default function EmailPreview(props) {
         eventBus.emit('remove-email', id)
     }
 
-    function expandMail(email) {
-        const data = { isExpanded: true, currEmail: email };
-        eventBus.emit('expandMail', data);
+    function expandMail() {
+        props.history.push(`/email/${props.email.id}`)
     }
 
     return (
-        <tr className={!props.email.isRead ? 'e-unread' : 'e-read'} onClick={() => expandMail(props.email)}>
+        <tr className={!props.email.isRead ? 'e-unread' : 'e-read'} onClick={expandMail}>
             <td className="e-email-buttons flex align-center">
                 <h3 className={props.email.isStarred ? 'e-starred-btn' : 'e-not-starred-btn'} onClick={(e) => onStarredToggle(e, props.email.id)} ></h3>
                 <h3 className={props.email.isStarred ? 'e-read-btn' : 'e-unread-btn'} onClick={(e) => onReadToggle(e, props.email.id)}></h3>
