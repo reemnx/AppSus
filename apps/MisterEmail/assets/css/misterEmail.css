@@ -14,6 +14,10 @@ a {
     margin: 0 auto;
 }
 
+.e-main-menu{
+    position: fixed;
+}
+
 .e-Search-mails {
     height: 45px;
     width: 500px;
@@ -71,6 +75,7 @@ a {
 
 .e-emails-container {
     width: 100%;
+    height: 100%;
 }
 
 .e-new-mail {
@@ -441,6 +446,10 @@ a {
 }
 
 @media(max-width:500px){
+     .e-Search-mails{
+         margin: 0 10px;
+     }
+
     .e-email-list-container tr{
         flex-direction: column;
         padding: 15px 0px;
@@ -456,5 +465,35 @@ a {
         min-height: 28px;
     }
 
+
+    .e-compose-mail{
+        width: 100%;
+        position: fixed;
+        left: 0;
+
+    }
+    .e-compose-mail * {
+        border-bottom: 1px solid #f1f2f6;
+    }
+    
+    .e-compose-title {
+        background-color: white;
+    }
+    
+    .e-compose-address-wrap input {
+        width: 100%;
+        border: 0;
+    }
+    
+    .e-reply-tag {
+        align-self: center;
+        padding: 4px;
+        border: 0;
+    }
+    
+    .e-compose-mail textarea {
+        height: 300px;
+        resize: none;
+    }
   
 }

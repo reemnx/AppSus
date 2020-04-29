@@ -111,7 +111,7 @@ export default class EmailApp extends React.Component {
                     <div className="e-nav-container flex space-between align-center">
                         <h2 className="e-logo">Email</h2>
                         <input className="e-Search-mails" placeholder="Search" onChange={this.handleChange} />
-                        <MainMenu></MainMenu>
+                        <MainMenu classList="e-main-menu" />
                     </div>
                 </header>
                 <main className="flex">
