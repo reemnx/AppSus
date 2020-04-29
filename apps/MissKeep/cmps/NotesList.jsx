@@ -2,7 +2,13 @@ import TxtNoteContent from './TxtNoteContent.jsx'
 import ImgNoteContent from './ImgNoteContent.jsx'
 import VidNoteContent from './VidNoteContent.jsx'
 import ListNoteContent from './ListNoteContent.jsx'
+import BorderColorChange from './BorderColorChange.jsx'
+import utilService from '../services/utilService.js'
 export default class NoteList extends React.Component {
+
+  state = {
+    featuresClass: false
+  }
 
   onChecked = () => {
     this.setState({ lineDecoration: 'MK-line' })
@@ -34,18 +40,28 @@ export default class NoteList extends React.Component {
     
   }
  
+  onSetBgColor = (color ,noteId) => {
+    document.getElementById(noteId).style.borderColor = color;
+  }
+
+  showNoteFeatures = (note,mode) => {
+    note.isFeaturesShown = mode
+    this.setState({featuresClass: true})
+  }
+
   render() {
     const { notes , sectionClass} = this.props
-   
+   const {featuresClass} = this.state
     if (!notes.length) return <React.Fragment></React.Fragment>
 
     return (
 
       <section className={sectionClass}>
         {notes.map((note, idx) => {
-        
+        let rndId = utilService.getId()
             return (
-              <div className="MK-txt-note flex align-center column" key={idx}>
+              <div className="MK-txt-note flex align-center column" id={rndId} key={idx}
+               onMouseEnter={()=>this.showNoteFeatures(note,true)} onMouseLeave={()=>this.showNoteFeatures(note,false)} >
                 <div className="MK-note-header flex space-between align-center">
 
                   {note.type === 'txtNote' && <img className='MK-text' />}
@@ -64,7 +80,8 @@ export default class NoteList extends React.Component {
                 {note.type === 'NoteTodos' && <ListNoteContent contentChange={this.onListItemValueChange} note={note} />}
                 {note.type === 'NoteTodos' && <button className="MK-add-todo-item" onClick={() => this.onNewTodoItem(note)}>Add item</button>}
 
-                <button onClick={() => this.onRemoveNote(note.id)}>Done</button>
+                <button className="MK-note-done-button" onClick={() => this.onRemoveNote(note.id)}>Done</button>
+                {note.isFeaturesShown && <BorderColorChange noteId={rndId} setColor={this.onSetBgColor} />}
               </div>
             )
         })}
