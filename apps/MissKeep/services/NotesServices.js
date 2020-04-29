@@ -26,7 +26,8 @@ let gNotes = storageService.loadFromStorage(KEY) || [
         title: 'Shopping',
         content: 'Banana , Apple , Orange , water , shoes , backpack',
         isPinned: false,
-        id: utilService.getId()
+        id: utilService.getId(),
+        isFeaturesShown: false
     },
     {
         type: 'NoteImg',
@@ -34,21 +35,24 @@ let gNotes = storageService.loadFromStorage(KEY) || [
         imgUrl: 'https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         isPinned: false,
         id: utilService.getId(),
-        content: 'Describe this image...'
+        content: 'Describe this image...',
+        isFeaturesShown: false
     },
     {
         type: 'txtNote',
         title: 'Long TxT',
         content: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic',
         isPinned: false,
-        id: utilService.getId()
+        id: utilService.getId(),
+        isFeaturesShown: false
     },
     {
         type: 'txtNote',
         title: 'Poop',
         content: 'Pooping is fun ',
         isPinned: false,
-        id: utilService.getId()
+        id: utilService.getId(),
+        isFeaturesShown: false
     },
     {
         type: 'NoteVid',
@@ -56,7 +60,8 @@ let gNotes = storageService.loadFromStorage(KEY) || [
         vidUrl: 'https://www.youtube.com/embed/Law7wfdg_ls',
         isPinned: true,
         id: utilService.getId(),
-        content: 'Describe this Video...'
+        content: 'Describe this Video...',
+        isFeaturesShown: false
     },
     {
         type: 'NoteImg',
@@ -64,14 +69,16 @@ let gNotes = storageService.loadFromStorage(KEY) || [
         imgUrl: 'https://images.pexels.com/photos/3250360/pexels-photo-3250360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         isPinned: false,
         id: utilService.getId(),
-        content: 'Describe this image...'
+        content: 'Describe this image...',
+        isFeaturesShown: false
     },
     {
         type: 'txtNote',
         title: 'ABC',
         content: 'ABCDEFGHIJKLMNOP ?',
         isPinned: true,
-        id: utilService.getId()
+        id: utilService.getId(),
+        isFeaturesShown: false
     },
     {
         type: 'NoteImg',
@@ -79,7 +86,8 @@ let gNotes = storageService.loadFromStorage(KEY) || [
         imgUrl: 'https://images.pexels.com/photos/842876/pexels-photo-842876.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
         isPinned: false,
         id: utilService.getId(),
-        content: 'Describe this image...'
+        content: 'Describe this image...',
+        isFeaturesShown: false
     },
     {
         type: 'NoteTodos',
@@ -87,7 +95,8 @@ let gNotes = storageService.loadFromStorage(KEY) || [
         title: 'im a list',
         id: utilService.getId(),
         content: 'About this List...',
-        todosList: { item0: 'list item', item1: 'list item' }
+        todosList: { item0: 'list item', item1: 'list item' },
+        isFeaturesShown: false
     }
 ]
 
