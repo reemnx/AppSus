@@ -206,14 +206,15 @@ h4 {
    margin: 20px 0px;
    columns: 4;
    column-gap: 40px;
+   padding-bottom: 30px;
 }
 
 .MK-txt-note {
     width: 100%;
     text-align: center;
-    border: 0.5px solid rgb(110, 110, 110);
-    border-radius: 10px;
-    box-shadow: 0px 1.2px 5px 0px rgba(0, 0, 0, 0.75);
+    border: 1.5px solid rgb(110, 110, 110);
+    border-radius: 5px;
+    box-shadow: 0px 1.2px 7px 0px rgba(0, 0, 0, 0.75);
     padding: 10px ;
     margin: 0 0 20px;
     height: fit-content;
@@ -292,6 +293,16 @@ h4 {
     content: url(../css/img/activePin.svg);
     width: 25px;
     height: 25px;
+}
+.MK-email {
+    content: url(../css/img/interface.png);
+    width: 25px;
+    height: 25px;
+    margin: 10px 0px;
+}
+
+.MK-email:hover{
+    cursor: pointer;
 }
 
 .MK-logo {
@@ -541,7 +552,7 @@ h4 {
 
 .MK-colors-holder{
     width: 100%;
-    margin: 15px 0px 0px 0px;
+    margin: 15px 0px 10px 0px;
     padding: 5px;  
 }
 .MK-colors-holder span{
@@ -567,8 +578,19 @@ h4 {
 .MK-none{
     border: 1.2px rgb(216, 216, 216) solid;
 }
+ 
+@media (max-width: 1080px){
+    .MK-notes-wraper {
+        columns: 3;
+     }
+}
+@media (max-width: 800){
+    .MK-notes-wraper {
+        columns: 2;
+     }
+}
 
-@media (max-width: 760px){
+@media (max-width: 600px){
     .MK-header nav{
         width: 100%;
         padding: 0px 10px;
@@ -642,5 +664,17 @@ h4 {
         padding: 10px 20px;
         border-radius: 10px;
     }
-    
+   .MK-mobile-features-close{
+       color: rgb(226, 226, 226);
+       margin-top: 20px !important;
+       font-size: 0.8rem;
+       font-weight: 600;
+       letter-spacing: 1.2px;
+   }
+   .MK-mobile-options {
+       width: 30% !important;
+   }
+   .MK-note-done-button{
+       width: 90% !important;
+   }
 }
