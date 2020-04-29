@@ -165,3 +165,14 @@ button {
 .space-around {
     justify-content: space-around;
 }
+
+@media (max-width: 1000px){
+    .home-main-section{
+        padding-top: 100px;
+        flex-direction: column;
+        height: fit-content;
+    }
+    .home-main-section * {
+        margin-bottom: 20px;
+    }
+}
