@@ -97,6 +97,10 @@ export default class EmailApp extends React.Component {
             .then(this.loadEmails());
     }
 
+    toggleLabelsMenu= () =>{
+        document.querySelector('.e-labels-container').classList.toggle('e-toggle-menu');
+    }
+
     render() {
         const { emails, composeMail, search, onlyUnread, unreadEmails } = this.state;
         const { pathname } = this.props.history.location;
@@ -105,19 +109,20 @@ export default class EmailApp extends React.Component {
             <div className="e-main-container flex column">
                 <header className="e-header">
                     <div className="e-nav-container flex space-between align-center">
-                        <h2 className="e-logo">MisterEmail</h2>
+                        <h2 className="e-logo">Email</h2>
                         <input className="e-Search-mails" placeholder="Search" onChange={this.handleChange} />
                         <MainMenu></MainMenu>
                     </div>
                 </header>
                 <main className="flex">
+                    <img className="e-lable-menu-btn" onClick={()=>this.toggleLabelsMenu()}></img>
                     <div className="e-labels-container flex column">
                         <button className="flex justify-center align-center e-new-mail" onClick={() => this.onComposeMail()}>
                             <span>Compose</span></button>
-                        <NavLink activeClassName="e-active-label" to="/email/label/income"><span>Inbox</span> <span className="e-unread-counter">{unreadEmails ? unreadEmails : ''}</span></NavLink>
-                        <NavLink activeClassName="e-active-label" to="/email/label/starred"><span>Starred</span></NavLink>
-                        <NavLink activeClassName="e-active-label" to="/email/label/sent"><span>Sent</span></NavLink>
-                        <NavLink activeClassName="e-active-label" to="/email/label/drafts"><span>Drafts</span></NavLink>
+                        <NavLink activeClassName="e-active-label" to="/email/label/income" onClick={()=>this.toggleLabelsMenu()}><span>Inbox</span> <span className="e-unread-counter">{unreadEmails ? unreadEmails : ''}</span></NavLink>
+                        <NavLink activeClassName="e-active-label" to="/email/label/starred" onClick={()=>this.toggleLabelsMenu()}><span>Starred</span></NavLink>
+                        <NavLink activeClassName="e-active-label" to="/email/label/sent" onClick={()=>this.toggleLabelsMenu()}><span>Sent</span></NavLink>
+                        <NavLink activeClassName="e-active-label" to="/email/label/drafts" onClick={()=>this.toggleLabelsMenu()}><span>Drafts</span></NavLink>
                         <EmailStatus emails={emails} />
                     </div>
                     <div className="e-emails-container">
