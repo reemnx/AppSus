@@ -11,24 +11,26 @@ const history = History.createBrowserHistory()
 
 
 export default class MissBooks extends React.Component {
-    
+
 
     render() {
         return (
             <Router className="miss-books-app">
-                <header>
+                <header className="b-header">
                     <h1>MissBooks</h1>
                     <NavBar history={history} />
                 </header>
-                <main>
-                    <Switch>
-                        <Route component={BookDetails} path="/missbooks/books/:theBookId" />
-                        <Route component={BookApp} path="/missbooks/books" />
-                        <Route component={About} path="/missbooks/about" />
-                        <Route component={Welcome} path="/missbooks/welcome" />
-                    </Switch>
+                <main className="b-main-container">
+                    <div className="b-main">
+                        <Switch>
+                            <Route component={BookDetails} path="/missbooks/books/:theBookId" />
+                            <Route component={BookApp} path="/missbooks/books" />
+                            <Route component={About} path="/missbooks/about" />
+                            <Route component={Welcome} path="/missbooks/welcome" />
+                        </Switch>
+                    </div>
                 </main>
-                <footer>
+                <footer className="b-footer">
                     coffeerights 2020 &copy;
                 </footer>
             </Router>

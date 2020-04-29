@@ -3,11 +3,11 @@
     src: url('../fonts/BalooBhaina2-Regular.ttf');
 }
 
-body {
+.b-main-container {
     font-family: BalooBhaina2;
-    margin: 0;
     background-color: #f5f6fa;
     color: #1e272e;
+    width: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -45,11 +45,14 @@ input {
     outline: none;
 }
 
-header {
+.b-header {
     display: flex;
     justify-content: center;
     height: 100px;
     border-bottom: 1px solid #1e272e;
+    font-family: BalooBhaina2;
+    background-color: #f5f6fa;
+    color: #1e272e;
 }
 
 header h1 {
@@ -86,6 +89,7 @@ header h1 {
 
 .nav-container li {
     text-decoration: none;
+    padding: 0px 20px;
     font-size: 1.5rem;
     transition: .25s;
     border-bottom: 1px solid transparent;
@@ -140,15 +144,22 @@ header h1 {
     fill: rgb(31, 31, 31);
 }
 
-main {
+.b-main {
     width: calc(100vw - 400px);
     margin: 0 auto;
+    font-family: BalooBhaina2;
+    background-color: #f5f6fa;
+    color: #1e272e;
 }
 
 .main-container {
     padding-top: 50px;
     height: calc(100vh - 120px);
     overflow-y: auto;
+    font-family: BalooBhaina2;
+    background-color: #f5f6fa;
+    color: #1e272e;
+    
 }
 
 .book-list {
@@ -569,7 +580,7 @@ main {
     padding-bottom: 10px;
 }
 
-footer {
+.b-footer {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -592,7 +603,7 @@ footer {
 }
 
 @media(max-width:1300px) {
-    header {
+    .b-header {
         justify-content: flex-end;
     }
     .nav-container {
@@ -636,13 +647,13 @@ footer {
 }
 
 @media(max-width:950px) {
-    header h1 {
+    .b-header h1 {
         left: 100px
     }
     .nav-container {
         margin-right: 100px;
     }
-    main {
+    .b-main {
         width: calc(100vw - 200px);
     }
     .book-list {
@@ -658,7 +669,7 @@ footer {
 }
 
 @media(max-width:860px) {
-    main {
+    .b-main {
         width: calc(100vw - 100px);
     }
     .reviews-container {
@@ -701,7 +712,7 @@ footer {
         transform: translateX(0) !important;
         display: flex !important;
     }
-    main {
+    .b-main {
         width: 100%;
     }
     .book-list {
