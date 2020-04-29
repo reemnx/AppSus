@@ -12,7 +12,7 @@ export class App extends React.Component {
     render() {
         return (
             <Router history={history}>
-                <main>
+                <main className="app-main">
                     <Switch>
                         <Route component={EmailApp} path="/email/label/:label" />
                         <Route component={EmailApp} path="/email" />
