@@ -106,7 +106,7 @@ function sentMail(mail) {
     gEmails.income.unshift({ ...newMail });
     gEmails.sent.unshift({ ...newMail });
     storageServices.saveToStorage(KEY, gEmails);
-    return Promise.resolve();
+    return Promise.resolve({ 'msg': 'Sent successfully to:', 'content': mail.address, 'type': 'success' });
 }
 
 function draftMail(mail) {
@@ -116,7 +116,7 @@ function draftMail(mail) {
     newMail.isStarred = false;
     gEmails.drafts.unshift({ ...newMail });
     storageServices.saveToStorage(KEY, gEmails);
-    return Promise.resolve()
+    return Promise.resolve({ 'msg': 'Saved to draft', 'content': mail.subject, 'type': 'success'  })
 }
 
 function readMail(id) {
@@ -139,6 +139,8 @@ function sortBy(val) {
     } else {
         keys.forEach(key => {
             gEmails[key].sort(function (a, b) {
+                if (!a[val]) return -1;
+                if (!b[val]) return 1;
                 var subjectA = a[val].toUpperCase();
                 var subjectB = b[val].toUpperCase();
                 if (subjectA < subjectB) return -1;

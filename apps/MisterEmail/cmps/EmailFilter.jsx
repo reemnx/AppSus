@@ -15,7 +15,7 @@ export default class EmailFilter extends React.Component {
     render() {
         return (
             <div className="e-toggle-filter-container flex space-between align-center">
-                <select onChange={(event) => this.onSortBy(event)}>
+                <select className="e-sory-by-select" onChange={(event) => this.onSortBy(event)}>
                     <option value='sentAt'>Date</option>
                     <option value='subject'>Title</option>
                 </select>

@@ -1,4 +1,4 @@
-a{
+a {
     text-decoration: none;
 }
 
@@ -14,15 +14,16 @@ a{
     margin: 0 auto;
 }
 
-.e-Search-mails{
+.e-Search-mails {
     height: 45px;
     width: 500px;
     font-size: 1.3rem;
     border: 0;
-    background-color: #f1f2f6;
     color: #2f3542;
     border-radius: 4px;
     text-align: center;
+    background: url(../img/search-solid.svg) no-repeat scroll 10px 8px #f1f2f6;
+    background-size: 1.8rem;
 }
 
 .e-labels-container {
@@ -36,11 +37,24 @@ a{
     cursor: pointer;
 }
 
-.e-labels-container a{
+.e-labels-container a {
     color: #2f3542;
+    margin: 20px 0px;
+    width: 90%;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
-.e-unread-counter{
+.e-active-label {
+    background-color: #2ed573;
+    border: 1px solid #2ed573;
+}
+
+.e-active-label span{
+    color: white;
+}
+
+.e-unread-counter {
     font-weight: bold;
 }
 
@@ -48,7 +62,7 @@ a{
     width: 100%;
 }
 
-.e-new-mail{
+.e-new-mail {
     height: 50px;
     width: 150px;
     border: 0;
@@ -58,20 +72,19 @@ a{
     align-self: center;
 }
 
-.e-new-mail:hover{
+.e-new-mail:hover {
     letter-spacing: 1px;
     width: 160px;
     height: 60px;
     margin: 15px;
 }
 
-.e-new-mail span{
+.e-new-mail span {
     padding: 0;
     margin: 0;
     color: white;
     font-size: 1.5rem;
 }
-
 
 .e-email-list-table {
     width: 100%;
@@ -102,7 +115,7 @@ a{
     text-overflow: ellipsis;
     line-height: 20px;
     word-wrap: break-word;
-    max-width:400px
+    max-width: 400px
 }
 
 .e-email-buttons {
@@ -120,13 +133,14 @@ a{
     color: #2f3542;
 }
 
-.e-detail-email-buttons *{
+.e-detail-email-buttons * {
     font-size: 1.5rem;
     margin-right: 5px;
 }
 
 .e-email-address {
     flex: 1.5;
+    margin-right: 10px;
 }
 
 .e-email-subject {
@@ -175,14 +189,65 @@ a{
     bottom: 0;
     right: 5%;
     width: 500px;
+    border: 1px solid #ced6e0;
+    border-radius: 4px;
+}
+
+.e-compose-mail * {
+    min-height: 30px;
+    border: 0;
+    border-bottom: 1px solid #f1f2f6;
+}
+
+.e-compose-title{
+    background-color: white;
+}
+
+.e-compose-address-wrap input {
+    width: 100%;
+    border: 0;
+}
+
+.e-reply-tag {
+    align-self: center;
+    padding: 4px;
+    border: 0;
 }
 
 .e-compose-mail textarea {
     height: 300px;
+    resize: none;
+}
+
+.e-close-compose-btn{
+    width: 50px;
+    border-top-right-radius: 4px;
+    transition: .25s;
+}
+
+.e-close-compose-btn:hover{
+    background-color: #ff4757;
+    color: white;
+}
+
+.e-compose-sent-btn{
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    height: 50px;
+    transition: .25s;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.e-compose-sent-btn:hover{
+    background-color: #2ed573;
+    color: white;
+    letter-spacing: 3px;
 }
 
 .e-email-details {
     width: 100%;
+    margin-top: 20px;
 }
 
 .e-email-details h2 {
@@ -202,6 +267,12 @@ a{
     letter-spacing: 1px;
     margin: 0;
     border-radius: 4px;
+}
+
+.e-sory-by-select{
+    border: 0;
+    font-size: 1rem;
+    cursor: pointer;
 }
 
 .e-toggle-filter {
@@ -224,4 +295,45 @@ a{
 
 .e-filter-by-read {
     padding-bottom: 2px;
+}
+
+.e-msg-modal{
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    color: white;
+    padding: 10px 30px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    transition: .25s;
+}
+
+.e-msg-modal *{
+    margin: 0;
+}
+
+.e-msg-modal.success{
+    background-color: #2ed573;
+}
+
+.e-msg-modal.error{
+    background-color: #ffa502;
+}
+
+.close-modal-btn {
+    position: absolute;
+    border: 0;
+    width: 40px;
+    top: 0;
+    right: 0;
+    background-color: white;
+    color: #747d8c;
+    transition: .25s;
+    border-top: 1px solid #dfe4ea;
+    border-right: 1px solid #dfe4ea;
+    border-top-right-radius: 6px;
+}
+
+.close-modal-btn:hover {
+    color: #2f3542;
 }

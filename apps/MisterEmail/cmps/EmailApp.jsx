@@ -1,4 +1,4 @@
-const { Route, Switch, Link } = ReactRouterDOM;
+const { Route, Switch, NavLink } = ReactRouterDOM;
 import MainMenu from '../../../cmps/MainMenu.jsx';
 import emailService from '../services/emailService.js';
 import EmailList from '../cmps/EmailList.jsx';
@@ -6,6 +6,7 @@ import EmailCompose from '../cmps/EmailCompose.jsx';
 import EmailDetails from '../cmps/EmailDetails.jsx';
 import EmailStatus from '../cmps/EmailStatus.jsx';
 import EmailFilter from '../cmps/EmailFilter.jsx';
+import UserMsg from '../cmps/UserMsg.jsx';
 import { eventBus } from '../../../services/eventBusService.js';
 
 
@@ -32,7 +33,7 @@ export default class EmailApp extends React.Component {
             emailService.removeEmail(id)
                 .then(this.loadEmails());
         })
-        eventBus.on('reply-compose',() => {
+        eventBus.on('reply-compose', () => {
             this.onComposeMail();
         })
     }
@@ -41,10 +42,10 @@ export default class EmailApp extends React.Component {
         this.setState({ search: target.value });
     }
 
-    componentDidUpdate(prevProps) {     
+    componentDidUpdate(prevProps) {
         if (prevProps.match.params.label !== this.props.match.params.label) {
             this.loadEmails()
-        }       
+        }
     }
 
     loadEmails() {
@@ -65,13 +66,21 @@ export default class EmailApp extends React.Component {
     onSentMail = (mail, event) => {
         event.preventDefault();
         emailService.sentMail(mail)
-            .then(this.loadEmails());
+            .then(res => {
+                eventBus.emit('show-msg', res);
+                this.loadEmails();
+            })
+            .catch(res => eventBus.emit('show-msg', res))
         this.closeMailCompose();
     }
 
     onDraftMail = (mail) => {
         emailService.draftMail(mail)
-            .then(this.loadEmails());
+            .then(res => {
+                eventBus.emit('show-msg', res);
+                this.loadEmails();
+            })
+            .catch(res => eventBus.emit('show-msg', res))
     }
 
     onlyUnreadToggle = () => {
@@ -85,7 +94,7 @@ export default class EmailApp extends React.Component {
 
     render() {
         const { emails, composeMail, search, onlyUnread, unreadEmails } = this.state;
-        const {pathname} = this.props.history.location;
+        const { pathname } = this.props.history.location;
 
         return (
             <div className="e-main-container flex column">
@@ -100,10 +109,10 @@ export default class EmailApp extends React.Component {
                     <div className="e-labels-container flex column">
                         <button className="flex justify-center align-center e-new-mail" onClick={() => this.onComposeMail()}>
                             <span>Compose</span></button>
-                        <Link to="/email/label/income">Inbox <span className="e-unread-counter">{unreadEmails ? unreadEmails : ''}</span></Link>
-                        <Link to="/email/label/starred">Starred</Link>
-                        <Link to="/email/label/sent">Sent</Link>
-                        <Link to="/email/label/drafts">Drafts</Link>
+                        <NavLink activeClassName="e-active-label" to="/email/label/income"><span>Inbox</span> <span className="e-unread-counter">{unreadEmails ? unreadEmails : ''}</span></NavLink>
+                        <NavLink activeClassName="e-active-label" to="/email/label/starred"><span>Starred</span></NavLink>
+                        <NavLink activeClassName="e-active-label" to="/email/label/sent"><span>Sent</span></NavLink>
+                        <NavLink activeClassName="e-active-label" to="/email/label/drafts"><span>Drafts</span></NavLink>
                         <EmailStatus emails={emails} />
                     </div>
                     <div className="e-emails-container">
@@ -115,8 +124,8 @@ export default class EmailApp extends React.Component {
                         </Switch>}
                     </div>
                     {composeMail &&
-                        <EmailCompose history={this.props.history} closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} composeMail={composeMail}/>}
-
+                        <EmailCompose history={this.props.history} closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} composeMail={composeMail} />}
+                    <UserMsg />
                 </main>
             </div>
         )
