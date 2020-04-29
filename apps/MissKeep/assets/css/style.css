@@ -673,6 +673,7 @@ h4 {
    }
    .MK-mobile-options {
        width: 30% !important;
+       background-color: rgb(99, 99, 99) !important;
    }
    .MK-note-done-button{
        width: 90% !important;

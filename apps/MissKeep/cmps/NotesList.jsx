@@ -71,7 +71,7 @@ export default class NoteList extends React.Component {
       content = content.join(', ')
     }
     else content = note.content
-    console.log(`/email?content=${content}&?title=${title}`);
+    console.log(`/email?content=${content}&title=${title}`);
     
     this.props.history.push(`/email?content=${content}&?title=${title}`)
   }
