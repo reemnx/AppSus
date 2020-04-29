@@ -40,6 +40,11 @@ button {
     width: 200px;
     height: 200px;
 }
+.home-logo{
+    content: url(../img/animals.svg);
+    width: 80px;
+    height: 80px;
+}
 
 .app-main{
     width: 100vw;
@@ -50,6 +55,11 @@ button {
     background-color: #202124;
     width: 100%;
     height: 100%;
+    
+}
+.home-nav {
+    color: rgb(226, 226, 226) ;
+    font-size: 1.3rem;
 }
 
 .home-main-section div{
