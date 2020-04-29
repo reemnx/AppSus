@@ -120,6 +120,11 @@ a{
     color: #2f3542;
 }
 
+.e-detail-email-buttons *{
+    font-size: 1.5rem;
+    margin-right: 5px;
+}
+
 .e-email-address {
     flex: 1.5;
 }
