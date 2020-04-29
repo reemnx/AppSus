@@ -6,7 +6,7 @@ import { eventBus } from '../../../services/eventBusService.js'
 export default class NoteTodos extends React.Component {
 
     state = {
-        listCnt: 0,
+        listCnt: 1,
         currTodos: [],
         noteTitle: null
     }

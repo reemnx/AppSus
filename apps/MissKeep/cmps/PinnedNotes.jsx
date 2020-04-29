@@ -10,15 +10,14 @@ export default class PinnedNotes extends React.Component {
         NotesServices.unPinNote(res)
           .then(res => {
             console.log(res);
-            
+
             this.props.updateNoteList()
             eventBus.emit('show-msg', `Note "${res[0].title}" UnPinned!`)
           })
       })
   }
 
-  onRemoveNote = ({ target }) => {
-    let id = target.getAttribute('id')
+  onRemoveNote = (id) => {
     NotesServices.getNoteIdxById(id)
       .then(res => {
 
@@ -79,7 +78,7 @@ export default class PinnedNotes extends React.Component {
                 </div>
                 <h2>#{note.title}</h2>
                 <p contentEditable="true" suppressContentEditableWarning="true" spellCheck="false"> {note.content} </p>
-                <button id={note.id} onClick={this.onRemoveNote}>Done</button>
+                <button onClick={() => this.onRemoveNote(note.id)}>Done</button>
               </div>
             )
           }
@@ -93,7 +92,7 @@ export default class PinnedNotes extends React.Component {
                 <h2>#{note.title}</h2>
                 <img className="MK-img-note-image" src={note.imgUrl} ></img>
                 <p contentEditable="true" suppressContentEditableWarning="true" spellCheck="false">{note.content}</p>
-                <button id={note.id} onClick={this.onRemoveNote}>Done</button>
+                <button onClick={() => this.onRemoveNote(note.id)}>Done</button>
               </div>
             )
           }
@@ -107,7 +106,7 @@ export default class PinnedNotes extends React.Component {
                 <h2>#{note.title}</h2>
                 <iframe width="400" height="215" src={note.vidUrl} ></iframe>
                 <p contentEditable="true" suppressContentEditableWarning="true" spellCheck="false">{note.content}</p>
-                <button id={note.id} onClick={this.onRemoveNote}>Done</button>
+                <button onClick={() => this.onRemoveNote(note.id)}>Done</button>
               </div>
             )
           }
@@ -129,7 +128,7 @@ export default class PinnedNotes extends React.Component {
                     <h4>{moment().format('MMMM Do')}</h4>
                   </div>
                 )}
-                <button id={note.id} onClick={this.onRemoveNote}>Done</button>
+                <button onClick={() => this.onRemoveNote(note.id)}>Done</button>
               </div>
             )
           }

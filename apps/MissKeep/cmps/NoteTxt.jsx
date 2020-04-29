@@ -4,7 +4,8 @@ export default class NoteTxt extends React.Component {
 
     state = {
         title: null,
-        content: null
+        content: null,
+        isFirstClick: false
     }
 
     onTitleChange = ({target}) =>{
@@ -29,6 +30,12 @@ export default class NoteTxt extends React.Component {
         this.props.closemodal()
     }
 
+    onUserClick =({target}) =>{
+        if(this.state.isFirstClick) return
+        target.innerHTML = ''
+        this.setState({isFirstClick: true})
+    }
+
 
     render() {
         const {title , content} = this.state
@@ -37,7 +44,7 @@ export default class NoteTxt extends React.Component {
                 <form className="MK-txt-note-modal flex column align-center"
                     onSubmit={this.onNoteSubmited} title={title} note={content}>
                     <input type="text" name="title" placeholder="Title" onChange={this.onTitleChange}/>
-                    <blockquote contentEditable="true" onKeyUp={this.onNoteChange}>
+                    <blockquote contentEditable="true" onClick={this.onUserClick} onKeyUp={this.onNoteChange}>
                     Take a note...
                     </blockquote>
                     <div className="MK-txt-modal-btns flex space-between">

@@ -1,146 +1,72 @@
-import { eventBus } from '../../../services/eventBusService.js'
-import NotesServices from '../services/NotesServices.js'
+import TxtNoteContent from './TxtNoteContent.jsx'
+import ImgNoteContent from './ImgNoteContent.jsx'
+import VidNoteContent from './VidNoteContent.jsx'
+import ListNoteContent from './ListNoteContent.jsx'
 export default class NoteList extends React.Component {
 
-  state = {
-    lineDecoration: ''
+  onChecked = () => {
+    this.setState({ lineDecoration: 'MK-line' })
   }
 
-  onChecked = () =>{
-    this.setState({lineDecoration: 'MK-line'})
+  onContentChange = (id, event) => {
+    this.props.noteContentChange(id, event.target.innerHTML)
   }
 
-  onContentChange = ({ target }) => {
-    let id = target.getAttribute('id')
-    NotesServices.saveNoteUpdates(id, target.innerHTML)
+  onListItemValueChange = (note , key , event) =>{
+    this.props.changeTodosKeyValue(note, key , event.target.innerHTML)
+    
   }
 
-  onRemoveNote = ({ target }) => {
-    let idx = target.getAttribute('idx');
-
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: true
-    })
-
-    swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'cancel',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.value) {
-        NotesServices.removeNote(idx)
-          .then(() => {
-            this.props.updateNoteList()
-            eventBus.emit('show-msg', `Note Deleted!`)
-            swalWithBootstrapButtons.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-          })
-
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelled',
-          '',
-          'error'
-        )
-      }
-    })
+  onRemoveNote = (id) => {
+    this.props.removeNote(id)
   }
 
-  onToPin = ({ target }) => {
-    let idx = target.getAttribute('idx')
-    NotesServices.pinNote(idx)
-      .then(res => {
-        eventBus.emit('show-msg', `Note "${res.title}" Pinned!`)
-        this.props.updateNoteList()
-      })
+  onToPin = (id) => {
+    this.props.pinNote(id)
   }
 
+  onUnPin = (id) => {
+    this.props.unPinNote(id)
+  }
+
+  onNewTodoItem = (note) => {
+    this.props.addTodoItem(note)
+    
+  }
+ 
   render() {
-    const { notes } = this.props
-    const { lineDecoration } = this.state
-    if (!notes) return <h2>loading..</h2>
+    const { notes , sectionClass} = this.props
+   
+    if (!notes.length) return <React.Fragment></React.Fragment>
+
     return (
-      <section className="MK-notes-wraper container">
-        {/* flex align-center justify-center container */}
+
+      <section className={sectionClass}>
         {notes.map((note, idx) => {
-          if (note.type === 'txtNote' && !note.isPinned) {
+        
             return (
               <div className="MK-txt-note flex align-center column" key={idx}>
                 <div className="MK-note-header flex space-between align-center">
-                  <img className='MK-text' />
-                  <img className='MK-pin' idx={idx} onClick={this.onToPin} />
-                </div>
-                <h2>#{note.title}</h2>
-                <p contentEditable="true" suppressContentEditableWarning="true" spellCheck="false" id={note.id} onKeyUp={this.onContentChange}> {note.content} </p>
-                <button idx={idx} onClick={this.onRemoveNote}>Done</button>
-              </div>
-            )
-          }
-          else if (note.type === 'NoteImg' && !note.isPinned) {
-            return (
-              <div className="MK-img-note flex align-center column" key={idx}>
-                <div className="MK-note-header flex space-between align-center">
-                  <img className='MK-img' />
-                  <img className='MK-pin' idx={idx} onClick={this.onToPin} />
-                </div>
-                <h2>#{note.title}</h2>
-                <img className="MK-img-note-image" src={note.imgUrl} ></img>
-                <p contentEditable="true" suppressContentEditableWarning="true" spellCheck="false" id={note.id} onKeyUp={this.onContentChange}>{note.content}</p>
-                <button idx={idx} onClick={this.onRemoveNote}>Done</button>
-              </div>
-            )
-          }
-          else if (note.type === 'NoteVid' && !note.isPinned) {
-            return (
-              <div className="MK-vid-note flex align-center column" key={idx}>
-                <div className="MK-note-header flex space-between align-center">
-                  <img className='MK-vid' />
-                  <img className='MK-pin' idx={idx} onClick={this.onToPin} />
-                </div>
-                <h2>#{note.title}</h2>
-                <iframe width="400" height="215" src={note.vidUrl} ></iframe>
-                <p contentEditable="true" suppressContentEditableWarning="true" spellCheck="false">{note.content}</p>
-                <button id={note.id} onClick={this.onRemoveNote}>Done</button>
-              </div>
-            )
-          }
 
-          else if (note.type === 'NoteTodos' && !note.isPinned) {
-            return (
-              <div className="MK-vid-note flex align-center column" key={idx}>
-                <div className="MK-note-header flex space-between align-center">
-                  <img className='MK-list' />
-                  <img className='MK-pin' idx={idx} onClick={this.onToPin} />
+                  {note.type === 'txtNote' && <img className='MK-text' />}
+                  {note.type === 'NoteImg' && <img className='MK-img' />}
+                  {note.type === 'NoteVid' && <img className='MK-vid' />}
+                  {note.type === 'NoteTodos' && <img className='MK-list' />}
+
+                  {!note.isPinned && <img className='MK-pin' onClick={() => this.onToPin(note.id)} />}
+                  {note.isPinned && <img className='MK-active-pin' onClick={() => this.onUnPin(note.id)} />}
+
                 </div>
-                <h2>#{note.title}</h2>
-                {Object.keys(note.todosList).map(key =>
-                  <div className="todo-note-item-wraper flex space-between">
-                    <div className="MK-checkbox flex">
-                      <input type="checkbox" onChange={this.onChecked} />
-                      <h3 className={lineDecoration} value={key} contentEditable="true" suppressContentEditableWarning="true" spellCheck="false">{note.todosList[key]}</h3>
-                    </div>
-                    <h4>{moment().format('MMMM Do, h:mm')}</h4>
-                  </div>
-                )}
-                <button id={note.id} idx={idx} onClick={this.onRemoveNote}>Done</button>
+                
+                {note.type === 'txtNote' && <TxtNoteContent contentChange={this.onContentChange} note={note} />}
+                {note.type === 'NoteImg' && <ImgNoteContent contentChange={this.onContentChange} note={note} />}
+                {note.type === 'NoteVid' && <VidNoteContent contentChange={this.onContentChange} note={note} />}
+                {note.type === 'NoteTodos' && <ListNoteContent contentChange={this.onListItemValueChange} note={note} />}
+                {note.type === 'NoteTodos' && <button className="MK-add-todo-item" onClick={() => this.onNewTodoItem(note)}>Add item</button>}
+
+                <button onClick={() => this.onRemoveNote(note.id)}>Done</button>
               </div>
             )
-          }
-
         })}
 
       </section >
