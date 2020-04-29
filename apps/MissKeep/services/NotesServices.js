@@ -15,7 +15,8 @@ export default {
     saveNoteUpdates,
     pushTodosNotes,
     changeTodoItemValue,
-    addNewTodoItem
+    addNewTodoItem,
+    pushNoteFromEmail
 }
 
 const KEY = 'notesList'
@@ -56,7 +57,7 @@ let gNotes = storageService.loadFromStorage(KEY) || [
     },
     {
         type: 'NoteVid',
-        title: 'Vid Example',
+        title: 'Im a vid note',
         vidUrl: 'https://www.youtube.com/embed/Law7wfdg_ls',
         isPinned: true,
         id: utilService.getId(),
@@ -75,7 +76,7 @@ let gNotes = storageService.loadFromStorage(KEY) || [
     {
         type: 'txtNote',
         title: 'ABC',
-        content: 'ABCDEFGHIJKLMNOP ?',
+        content: 'Hover me for more features',
         isPinned: true,
         id: utilService.getId(),
         isFeaturesShown: false
@@ -95,7 +96,7 @@ let gNotes = storageService.loadFromStorage(KEY) || [
         title: 'im a list',
         id: utilService.getId(),
         content: 'About this List...',
-        todosList: { item0: 'list item', item1: 'list item' },
+        todosList: { item0: 'List item' },
         isFeaturesShown: false
     }
 ]
@@ -128,6 +129,19 @@ function removeNote(idx) {
 }
 
 function pushTxtNotes(title, content) {
+    let txtNote = {
+        type: 'txtNote',
+        isPinned: false,
+        title,
+        content,
+        id: utilService.getId()
+    }
+
+    gNotes.unshift(txtNote)
+    storageService.saveToStorage(KEY, gNotes)
+    return Promise.resolve()
+}
+function pushNoteFromEmail(title, content) {
     let txtNote = {
         type: 'txtNote',
         isPinned: false,

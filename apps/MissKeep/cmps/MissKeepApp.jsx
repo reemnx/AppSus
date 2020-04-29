@@ -9,6 +9,7 @@ import CreateNoteModal from './CreateNoteModal.jsx'
 import UserMsg from './UserMsg.jsx'
 import NotesList from './NotesList.jsx'
 
+
 export default class MissKeepApp extends React.Component {
 
     state = {
@@ -19,7 +20,11 @@ export default class MissKeepApp extends React.Component {
     }
 
     componentDidMount() {
-        this.updateNotesList()
+        const query = new URLSearchParams(this.props.history.location.search);
+        const subject = query.get('title');
+        const body = query.get('content');
+        if (subject || body) NotesServices.pushNoteFromEmail(subject,body)
+            .then(this.updateNotesList())
     }
 
     updateNotesList = () => {
@@ -69,15 +74,15 @@ export default class MissKeepApp extends React.Component {
         NotesServices.saveNoteUpdates(id, data)
     }
 
-    onChangeTodosKeyValue = (note, key , data) => {
-        
-        NotesServices.changeTodoItemValue(note , key ,data)
+    onChangeTodosKeyValue = (note, key, data) => {
+
+        NotesServices.changeTodoItemValue(note, key, data)
     }
 
-    onAddTodoItem = (note) =>{
+    onAddTodoItem = (note) => {
         NotesServices.addNewTodoItem(note)
             .then(this.updateNotesList)
-        
+
     }
 
     onRemoveNote = (id) => {
@@ -127,6 +132,7 @@ export default class MissKeepApp extends React.Component {
     render() {
         const { isNoteActive, type, notes } = this.state
         return (
+
             <React.Fragment>
                 <header className="MK-header flex justify-center align-center">
                     <nav className="flex align-center space-between container">
@@ -151,12 +157,12 @@ export default class MissKeepApp extends React.Component {
                     {notes && <NotesList removeNote={this.onRemoveNote} updateNoteList={this.updateNotesList}
                         notes={notes.filter((note => note.isPinned))} sectionClass="MK-pinned-notes"
                         pinNote={this.onPinNote} unPinNote={this.onUnPinNote} noteContentChange={this.onContentChange}
-                        changeTodosKeyValue={this.onChangeTodosKeyValue} addTodoItem={this.onAddTodoItem}
+                        changeTodosKeyValue={this.onChangeTodosKeyValue} addTodoItem={this.onAddTodoItem} history={this.props.history}
                     ></NotesList>}
 
                     {notes && <NotesList removeNote={this.onRemoveNote} updateNoteList={this.updateNotesList}
                         notes={notes.filter((note => !note.isPinned))} sectionClass="MK-notes-wraper"
-                        pinNote={this.onPinNote} noteContentChange={this.onContentChange}
+                        pinNote={this.onPinNote} noteContentChange={this.onContentChange} history={this.props.history}
                         changeTodosKeyValue={this.onChangeTodosKeyValue} addTodoItem={this.onAddTodoItem}
                     ></NotesList>}
 
