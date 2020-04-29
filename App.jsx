@@ -4,7 +4,8 @@ const history = History.createBrowserHistory();;
 import Home from './pages/Home.jsx'
 import MissKeepApp from './apps/MissKeep/cmps/MissKeepApp.jsx'
 import EmailApp from './apps/MisterEmail/cmps/EmailApp.jsx'
-// import App from './apps/MissBooks/App.jsx'
+import MissBooks from './apps/MissBooks/MissBooks.jsx'
+
 
 export class App extends React.Component {
 
@@ -16,7 +17,7 @@ export class App extends React.Component {
                         <Route component={EmailApp} path="/email/label/:label" />
                         <Route component={EmailApp} path="/email" />
                         <Route component={MissKeepApp} path="/misskeep" />
-                        {/* <Route component={App} path="/missbooksapp" /> */}
+                        <Route component={MissBooks} path="/missbooks" />
 
                         <Route component={Home} path="/" />
                     </Switch>

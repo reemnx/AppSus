@@ -9,7 +9,6 @@ import EmailFilter from '../cmps/EmailFilter.jsx';
 import UserMsg from '../cmps/UserMsg.jsx';
 import { eventBus } from '../../../services/eventBusService.js';
 
-
 export default class EmailApp extends React.Component {
     state = {
         search: '',
@@ -20,6 +19,12 @@ export default class EmailApp extends React.Component {
     }
 
     componentDidMount() {
+        const query = new URLSearchParams(this.props.location.search);
+        const subject = query.get('title');
+        const body = query.get('content');
+        if(subject || body) this.onComposeMail()
+
+
         this.loadEmails();
         eventBus.on('read-toggle', (id) => {
             emailService.readToggle(id)
