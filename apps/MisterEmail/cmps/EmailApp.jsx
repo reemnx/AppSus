@@ -19,7 +19,6 @@ export default class EmailApp extends React.Component {
     }
 
     componentDidMount() {
-
         this.loadEmails();
         eventBus.on('read-toggle', (id) => {
             emailService.readToggle(id)
@@ -33,7 +32,9 @@ export default class EmailApp extends React.Component {
             emailService.removeEmail(id)
                 .then(this.loadEmails());
         })
-
+        eventBus.on('reply-compose',() => {
+            this.onComposeMail();
+        })
     }
 
     handleChange = ({ target }) => {
@@ -43,9 +44,7 @@ export default class EmailApp extends React.Component {
     componentDidUpdate(prevProps) {     
         if (prevProps.match.params.label !== this.props.match.params.label) {
             this.loadEmails()
-        }
-        console.log(this.props.history);
-        console.log(this.props.match.path);
+        }       
     }
 
     loadEmails() {
@@ -116,7 +115,8 @@ export default class EmailApp extends React.Component {
                         </Switch>}
                     </div>
                     {composeMail &&
-                        <EmailCompose closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} />}
+                        <EmailCompose history={this.props.history} closeMailCompose={this.closeMailCompose} onSentMail={this.onSentMail} onDraftMail={this.onDraftMail} composeMail={composeMail}/>}
+
                 </main>
             </div>
         )
