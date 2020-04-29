@@ -61,6 +61,15 @@ export default class NoteList extends React.Component {
     this.setState({ featuresClass: true })
   }
 
+  onItemChecked = (noteId) => {
+    let el = document.getElementById(noteId)
+    
+    if(el.style.textDecoration === "line-through"){
+      el.style.textDecoration = "none"
+    }
+    else el.style.textDecoration = "line-through"
+  }
+
   sendAsEmail = (note) => {
     let title = note.title
     let content = []
@@ -104,7 +113,7 @@ export default class NoteList extends React.Component {
               {note.type === 'txtNote' && <TxtNoteContent contentChange={this.onContentChange} note={note} />}
               {note.type === 'NoteImg' && <ImgNoteContent contentChange={this.onContentChange} note={note} />}
               {note.type === 'NoteVid' && <VidNoteContent contentChange={this.onContentChange} note={note} />}
-              {note.type === 'NoteTodos' && <ListNoteContent contentChange={this.onListItemValueChange} note={note} />}
+              {note.type === 'NoteTodos' && <ListNoteContent onCheckItem={this.onItemChecked} contentChange={this.onListItemValueChange} note={note} />}
               {note.type === 'NoteTodos' && <button className="MK-add-todo-item" onClick={() => this.onNewTodoItem(note)}>Add item</button>}
 
               {note.isFeaturesShown && <span className="MK-email" onClick={() => this.sendAsEmail(note)}></span>}

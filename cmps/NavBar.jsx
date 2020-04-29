@@ -7,8 +7,8 @@ export default class NavBar extends React.Component {
        
         return (
 
-            <nav className="relative flex space-between align-center container">
-                <div className="logo">LOGO</div>
+            <nav className="home-nav relative flex space-between align-center container">
+                <img className="MK-logo"></img>
                 <MainMenu></MainMenu>
             </nav >
         )

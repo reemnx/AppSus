@@ -202,11 +202,11 @@ h4 {
 }
 
 .MK-notes-wraper {
-   width: 90%;
-   margin: 20px 0px;
-   columns: 4;
-   column-gap: 40px;
-   padding-bottom: 30px;
+    width: 90%;
+    margin: 20px 0px;
+    columns: 4;
+    column-gap: 40px;
+    padding-bottom: 30px;
 }
 
 .MK-txt-note {
@@ -215,7 +215,7 @@ h4 {
     border: 1.5px solid rgb(110, 110, 110);
     border-radius: 5px;
     box-shadow: 0px 1.2px 7px 0px rgba(0, 0, 0, 0.75);
-    padding: 10px ;
+    padding: 10px;
     margin: 0 0 20px;
     height: fit-content;
     overflow: hidden;
@@ -294,6 +294,7 @@ h4 {
     width: 25px;
     height: 25px;
 }
+
 .MK-email {
     content: url(../css/img/interface.png);
     width: 25px;
@@ -301,7 +302,27 @@ h4 {
     margin: 10px 0px;
 }
 
-.MK-email:hover{
+.MK-Gmail {
+    content: url(../css/img/gmail.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.MK-books {
+    content: url(../css/img/note.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.MK-Gmail:hover {
+    cursor: pointer;
+}
+
+.MK-books:hover {
+    cursor: pointer;
+}
+
+.MK-email:hover {
     cursor: pointer;
 }
 
@@ -309,6 +330,16 @@ h4 {
     content: url(../css/img/keep.png);
     width: 45px;
     height: 45px;
+}
+
+.MK-menu {
+    content: url(../css/img/dots-menu.svg);
+    width: 30px;
+    height: 30px;
+}
+
+.MK-menu:hover {
+    cursor: pointer;
 }
 
 .MK-list:hover {
@@ -478,7 +509,7 @@ h4 {
 }
 
 .MK-pinned-notes button {
-    background-color: rgb(180, 167, 49) ;
+    background-color: rgb(180, 167, 49);
     color: black;
 }
 
@@ -550,70 +581,81 @@ h4 {
     background-color: rgb(16, 122, 69) !important;
 }
 
-.MK-colors-holder{
+.MK-colors-holder {
     width: 100%;
     margin: 15px 0px 10px 0px;
-    padding: 5px;  
+    padding: 5px;
 }
-.MK-colors-holder span{
+
+.MK-colors-holder span {
     width: 20px;
     height: 20px;
     border-radius: 50%;
 }
-.MK-colors-holder span:hover{
+
+.MK-colors-holder span:hover {
     cursor: pointer;
 }
-.MK-blue{
+
+.MK-blue {
     background-color: #1f5d8e;
 }
-.MK-red{
+
+.MK-red {
     background-color: #842d2d;
 }
-.MK-green{
+
+.MK-green {
     background-color: #296c2c;
 }
-.MK-yellow{
+
+.MK-yellow {
     background-color: #ebe487;
 }
-.MK-none{
+
+.MK-none {
     border: 1.2px rgb(216, 216, 216) solid;
 }
- 
-@media (max-width: 1080px){
+
+@media (max-width: 1080px) {
     .MK-notes-wraper {
         columns: 3;
-     }
-}
-@media (max-width: 800){
-    .MK-notes-wraper {
-        columns: 2;
-     }
+    }
 }
 
-@media (max-width: 600px){
-    .MK-header nav{
+@media (max-width: 800) {
+    .MK-notes-wraper {
+        columns: 2;
+    }
+}
+
+@media (max-width: 600px) {
+    nav {
+        padding-right: 15px !important;
+    }
+    .MK-header nav {
         width: 100%;
         padding: 0px 10px;
     }
-    .MK-header nav input{
+    .MK-header nav input {
         width: 50%;
     }
-    .MK-content-container{
+    .MK-content-container {
         justify-content: center;
     }
-    .MK-create-note-wraper{
+    .MK-create-note-wraper {
         width: 90%;
     }
-    .MK-create-note-wraper input{
+    .MK-create-note-wraper input {
         width: 180px;
         height: 70px;
     }
-    .MK-notes-types-wraper{
+    .MK-notes-types-wraper {
         width: 200px;
         height: 70px;
         padding-right: 10px;
     }
-    .MK-create-note-wraper{
+    .MK-create-note-wraper {
         margin: 0px auto 40px auto;
     }
     .MK-notes-wraper {
@@ -621,32 +663,32 @@ h4 {
         margin: 20px auto;
         columns: 1;
         column-gap: 40px;
-     }
-     .MK-pinned-notes{
+    }
+    .MK-pinned-notes {
         width: 90%;
         margin: 20px auto;
         columns: 1;
         column-gap: 40px;
-     }
-     .MK-notes-wraper h2{
-         font-family: Arial, Helvetica, sans-serif;
-         font-weight: 600;
-         color: rgb(255, 255, 255);
-     }
-     .MK-notes-wraper button {
-         padding: 10px;
-         width: 70%;
-     }
-     .MK-pinned-notes h2{
-         font-family: Arial, Helvetica, sans-serif;
-         font-weight: 600;
-         color: rgb(255, 255, 255);
-     }
-     .MK-pinned-notes button {
-         padding: 10px;
-         width: 70%;
-     }
-     .MK-user-msg {
+    }
+    .MK-notes-wraper h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        color: rgb(255, 255, 255);
+    }
+    .MK-notes-wraper button {
+        padding: 10px;
+        width: 70%;
+    }
+    .MK-pinned-notes h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        color: rgb(255, 255, 255);
+    }
+    .MK-pinned-notes button {
+        padding: 10px;
+        width: 70%;
+    }
+    .MK-user-msg {
         position: fixed;
         z-index: 999;
         bottom: 15px;
@@ -664,18 +706,38 @@ h4 {
         padding: 10px 20px;
         border-radius: 10px;
     }
-   .MK-mobile-features-close{
-       color: rgb(226, 226, 226);
-       margin-top: 20px !important;
-       font-size: 0.8rem;
-       font-weight: 600;
-       letter-spacing: 1.2px;
-   }
-   .MK-mobile-options {
-       width: 30% !important;
-       background-color: rgb(99, 99, 99) !important;
-   }
-   .MK-note-done-button{
-       width: 90% !important;
-   }
+    .MK-mobile-features-close {
+        color: rgb(226, 226, 226);
+        margin-top: 20px !important;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 1.2px;
+    }
+    .MK-mobile-options {
+        width: 30% !important;
+        background-color: rgb(99, 99, 99) !important;
+    }
+    .MK-note-done-button {
+        width: 90% !important;
+    }
+    .apps-container {
+        flex-direction: column;
+        width: 60px !important;
+        background-color: rgba(0, 0, 0, 0.521);
+        border: 1.3px solid white;
+        border-radius: 10px;
+        top: 0px !important;
+        right: -7px !important;
+        transform: translateY(25%);
+    }
+    .apps-container img {
+        margin-bottom: 10px;
+        width: 40px !important;
+        height: 40px !important;
+        background-color: rgba(0, 0, 0, 0.521);
+        border: 1.1px solid rgba(255, 255, 255, 0.486) !important;
+    }
+    .apps-container img:first-of-type {
+        margin-top: 10px;
+    }
 }
