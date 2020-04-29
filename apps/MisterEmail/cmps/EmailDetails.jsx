@@ -35,7 +35,7 @@ export default class EmailDetails extends React.Component {
     }
 
     onSaveToNotes(email){
-        this.props.history.push(`/misskeep?title=${email.subject}&?content=${email.body}`)
+        this.props.history.push(`/misskeep?title=${email.subject}&content=${email.body}`)
     }
 
 
@@ -48,7 +48,7 @@ export default class EmailDetails extends React.Component {
                     <h3 className={currEmail.isStarred ? 'e-starred-btn' : 'e-not-starred-btn'} onClick={() => this.onStarredToggle(currEmail.id)} ></h3>
                     <h3 className="e-repaly-btn" onClick={() => this.onRepalyEmail(currEmail.address)}>↩</h3>
                     <h3 className="e-remove-btn" onClick={() => this.onRemoveEmail(currEmail.id)}>🗑</h3>
-                    <h3 className="e-save-note-btn" onClick={() => this.onSaveToNotes(currEmail)}>💌</h3>
+                    <h3 className="e-save-note-btn" onClick={() => this.onSaveToNotes(currEmail)}>🗒</h3>
 
                 </div>
                 <h2>{currEmail.subject}</h2>
