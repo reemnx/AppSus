@@ -18,8 +18,6 @@ export default class EmailCompose extends React.Component {
             const subject = query.get('title');
             const body = query.get('content');
             this.setState({ mail:{subject: subject || '', body: body || '' }})
-
-
         }
     }
 

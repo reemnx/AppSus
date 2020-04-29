@@ -19,12 +19,9 @@ export default class EmailApp extends React.Component {
     }
 
     componentDidMount() {
-        const query = new URLSearchParams(this.props.location.search);
-        console.log(query);
-        
+        const query = new URLSearchParams(this.props.location.search);    
         const subject = query.get('title');
         const body = query.get('content');
-        console.log(subject, body);
         if(subject || body) this.onComposeMail()
 
 
