@@ -17,7 +17,9 @@ export default class EmailCompose extends React.Component {
             const query = new URLSearchParams(this.props.history.location.search);
             const subject = query.get('title');
             const body = query.get('content');
-            this.setState({ mail: { subject: subject || '', body: body || '' }})
+            this.setState({ mail:{subject: subject || '', body: body || '' }})
+
+
         }
     }
 
