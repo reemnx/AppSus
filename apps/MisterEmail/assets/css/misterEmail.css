@@ -14,6 +14,10 @@ a {
     margin: 0 auto;
 }
 
+.e-main-menu{
+    position: fixed;
+}
+
 .e-Search-mails {
     height: 45px;
     width: 500px;
@@ -441,6 +445,10 @@ a {
 }
 
 @media(max-width:500px){
+     .e-Search-mails{
+         margin: 0 10px;
+     }
+
     .e-email-list-container tr{
         flex-direction: column;
         padding: 15px 0px;
