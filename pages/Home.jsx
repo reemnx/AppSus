@@ -8,7 +8,7 @@ export default class Home extends React.Component {
                 <header className="header-container flex justify-center align-center">
                     <NavBar></NavBar>
                 </header>
-                <h2>This is home</h2>
+                <section></section>
             </React.Fragment>
         )
     }
