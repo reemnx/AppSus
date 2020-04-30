@@ -424,6 +424,13 @@ a {
     .e-toggle-menu {
         transform: translateX(0);
     }
+
+    .e-compose-mail {
+        width: 100%;
+        position: fixed;
+        left: 0;
+    }
+    
     .e-email-details {
         width: 90%;
         margin: 0 auto;
@@ -447,11 +454,7 @@ a {
         flex: 1;
         min-height: 28px;
     }
-    .e-compose-mail {
-        width: 100%;
-        position: fixed;
-        left: 0;
-    }
+    
     .e-compose-mail * {
         border-bottom: 1px solid #f1f2f6;
     }
