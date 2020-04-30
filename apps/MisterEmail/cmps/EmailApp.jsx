@@ -117,7 +117,7 @@ export default class EmailApp extends React.Component {
                 <main className="flex">
                     <img className="e-lable-menu-btn" onClick={()=>this.toggleLabelsMenu()}></img>
                     <div className="e-labels-container flex column">
-                        <button className="flex justify-center align-center e-new-mail" onClick={() => this.onComposeMail()}>
+                        <button className="flex justify-center align-center e-new-mail" onClick={() => {this.onComposeMail() , this.toggleLabelsMenu()}}>
                             <span>Compose</span></button>
                         <NavLink activeClassName="e-active-label" to="/email/label/income" onClick={()=>this.toggleLabelsMenu()}><span>Inbox</span> <span className="e-unread-counter">{unreadEmails ? unreadEmails : ''}</span></NavLink>
                         <NavLink activeClassName="e-active-label" to="/email/label/starred" onClick={()=>this.toggleLabelsMenu()}><span>Starred</span></NavLink>
