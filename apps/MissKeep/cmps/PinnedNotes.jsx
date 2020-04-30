@@ -9,7 +9,7 @@ export default class PinnedNotes extends React.Component {
       .then(res => {
         NotesServices.unPinNote(res)
           .then(res => {
-            console.log(res);
+            
 
             this.props.updateNoteList()
             eventBus.emit('show-msg', `Note "${res[0].title}" UnPinned!`)

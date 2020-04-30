@@ -30,10 +30,7 @@ export default class NoteTodos extends React.Component {
     onItemInput = ({ target }) => {
         let todoValue = target.value
         let activeItem = target.getAttribute('name')
-        this.setState(prevState => ({ currTodos: {...prevState.currTodos, [activeItem]: todoValue}}),()=>{
-            console.log(this.state.currTodos);
-            
-        })
+        this.setState(prevState => ({ currTodos: {...prevState.currTodos, [activeItem]: todoValue}}))
     }
 
     onAddListItem = (ev) => {

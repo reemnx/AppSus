@@ -185,7 +185,7 @@ function pushVidNotes(title, vidUrl) {
 }
 
 function pushTodosNotes(title, todosList) {
-    console.log(title, todosList);
+    
 
     let todosNote = {
         type: 'NoteTodos',
@@ -219,7 +219,7 @@ function unPinNote(note) {
 }
 
 function changeTodoItemValue(note, key, data) {
-    console.log(note, key, data);
+    
     note.todosList[key] = data
     storageService.saveToStorage(KEY, gNotes)
 }

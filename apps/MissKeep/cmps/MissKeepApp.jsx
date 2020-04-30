@@ -24,7 +24,7 @@ export default class MissKeepApp extends React.Component {
         const query = new URLSearchParams(this.props.history.location.search);
         const subject = query.get('title');
         const body = query.get('content');
-        console.log(subject,body);
+        
         
         if (subject || body) NotesServices.pushNoteFromEmail(subject,body)
             .then(this.updateNotesList())

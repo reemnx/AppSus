@@ -620,12 +620,23 @@ h4 {
 @media (max-width: 1080px) {
     .MK-notes-wraper {
         columns: 3;
+        -webkit-perspective:1;
+        -webkit-column-count:3;
     }
+    .MK-pinned-notes{
+        columns: 3;
+        -webkit-perspective:1;
+        -webkit-column-count:3;
+
+    }
+    
 }
 
-@media (max-width: 800) {
+@media (max-width: 1000) {
     .MK-notes-wraper {
         columns: 2;
+        -webkit-column-count:2 ;
+        -webkit-perspective:1;
     }
 }
 
