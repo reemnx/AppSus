@@ -12,7 +12,7 @@ export default class EmailCompose extends React.Component {
 
     componentDidMount() {
         const recipient = this.props.history.location.state;
-        if (recipient) this.setState({ mail: { address: recipient.address }, replyTag: true })
+        if (recipient) this.setState(prevState => ({ mail: { ...prevState.mail , address: recipient.address }, replyTag: true }))
         else {
             const query = new URLSearchParams(this.props.history.location.search);
             const subject = query.get('title');

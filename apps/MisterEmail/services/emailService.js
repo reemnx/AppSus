@@ -110,6 +110,8 @@ function sentMail(mail) {
 }
 
 function draftMail(mail) {
+    console.log(mail);
+    
     let newMail = mail;
     newMail.id = getId();
     newMail.isRead = false;
