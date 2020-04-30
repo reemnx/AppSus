@@ -12,7 +12,7 @@ export default class BookAdd extends React.Component {
         if (!searchKey) this.setState({ googleBooks: null });
         else this.props.onGetGoogleBooks(searchKey)
             .then(res => this.setState({ googleBooks: res }))
-            .catch(res => console.log(res)
+            .catch(res => console.log(res))
     }
 
     onAddBook(book) {
